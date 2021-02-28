@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/topLeagues"
+        android:icon="@drawable/ic_top_leagues"
+        android:title="@string/top_leagues" />
+
+    <item
+        android:id="@+id/upcomingMatches"
+        android:icon="@drawable/ic_upcoming_matches"
+        android:title="@string/upcoming_matches" />
+
+    <item
+        android:id="@+id/myFavouriteTeam"
+        android:icon="@drawable/ic_favourite_team"
+        android:title="@string/favourite_team" />
+</menu>

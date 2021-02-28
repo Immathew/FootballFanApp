@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_navigation"
+    app:startDestination="@id/topLeagues">
+
+    <fragment
+        android:id="@+id/topLeagues"
+        android:name="com.example.footballfanapp.TopLeagues"
+        android:label="Top Leagues"
+        tools:layout="@layout/fragment_top_leagues" />
+    <fragment
+        android:id="@+id/upcomingMatches"
+        android:name="com.example.footballfanapp.UpcomingMatches"
+        android:label="Upcoming Matches"
+        tools:layout="@layout/fragment_upcoming_matches" />
+    <fragment
+        android:id="@+id/myFavouriteTeam"
+        android:name="com.example.footballfanapp.MyFavouriteTeam"
+        android:label="Favourite Team"
+        tools:layout="@layout/fragment_my_favourite_team" />
+</navigation>
