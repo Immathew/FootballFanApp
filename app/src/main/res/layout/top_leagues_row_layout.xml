@@ -1,119 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/topLeagues_row_layout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/row_cardView"
-        android:layout_width="0dp"
+    <data>
+        <variable
+            name="competition"
+            type="com.example.footballfanapp.models.Competition" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topLeagues_row_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="@color/lightMediumGray"
-        app:strokeWidth="10dp">
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white">
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/row_cardView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/lightMediumGray"
+            app:strokeWidth="10dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+                <ImageView
+                    android:id="@+id/leagueFlag_imageView"
+                    android:layout_width="80dp"
+                    android:layout_height="90dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/leagueCountry_textView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="12dp"
+                    android:text="England"
+                    android:textSize="12sp"
+                    android:textColor="@color/dark"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/leagueFlag_imageView"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/leagueName_textView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Premier League"
+                    android:textColor="@color/darker"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/leagueCountry_textView"
+                    app:layout_constraintStart_toStartOf="@+id/leagueCountry_textView"
+                    app:layout_constraintTop_toBottomOf="@+id/leagueCountry_textView" />
+
+                <TextView
+                    android:id="@+id/leaguesStarts_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/dark"
+                    android:text="Starts: "
+                    app:layout_constraintStart_toStartOf="@+id/leagueName_textView"
+                    app:layout_constraintTop_toBottomOf="@+id/leagueName_textView" />
+
+                <TextView
+                    android:id="@+id/dateLeaguesStarts_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="2020-08-09"
+                    android:textSize="12sp"
+                    android:textColor="@color/dark"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/leaguesStarts_textView"
+                    app:layout_constraintStart_toEndOf="@+id/leaguesStarts_textView"
+                    app:layout_constraintTop_toTopOf="@+id/leaguesStarts_textView" />
+
+                <TextView
+                    android:id="@+id/leagueEnds_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="Ends: "
+                    android:textSize="12sp"
+                    android:textColor="@color/dark"
+                    app:layout_constraintBottom_toBottomOf="@+id/dateLeaguesStarts_textView"
+                    app:layout_constraintStart_toEndOf="@+id/dateLeaguesStarts_textView"
+                    app:layout_constraintTop_toTopOf="@+id/dateLeaguesStarts_textView" />
+
+                <TextView
+                    android:id="@+id/dateLeagueEnds_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="2020-08-09"
+                    android:textSize="12sp"
+                    android:textColor="@color/dark"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/leagueEnds_textView"
+                    app:layout_constraintStart_toEndOf="@+id/leagueEnds_textView"
+                    app:layout_constraintTop_toTopOf="@+id/leagueEnds_textView" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            <ImageView
-                android:id="@+id/leagueFlag_imageView"
-                android:layout_width="80dp"
-                android:layout_height="90dp"
-                android:scaleType="centerCrop"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/avatars" />
-
-            <TextView
-                android:id="@+id/leagueCountry_textView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="12dp"
-                android:text="England"
-                android:textSize="12sp"
-                android:textColor="@color/dark"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/leagueFlag_imageView"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/leagueName_textView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Premier League"
-                android:textColor="@color/darker"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/leagueCountry_textView"
-                app:layout_constraintStart_toStartOf="@+id/leagueCountry_textView"
-                app:layout_constraintTop_toBottomOf="@+id/leagueCountry_textView" />
-
-            <TextView
-                android:id="@+id/leaguesStarts_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textSize="12sp"
-                android:textColor="@color/dark"
-                android:text="Starts: "
-                app:layout_constraintStart_toStartOf="@+id/leagueName_textView"
-                app:layout_constraintTop_toBottomOf="@+id/leagueName_textView" />
-
-            <TextView
-                android:id="@+id/dateLeaguesStarts_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="2020-08-09"
-                android:textSize="12sp"
-                android:textColor="@color/dark"
-                android:textStyle="italic"
-                app:layout_constraintBottom_toBottomOf="@+id/leaguesStarts_textView"
-                app:layout_constraintStart_toEndOf="@+id/leaguesStarts_textView"
-                app:layout_constraintTop_toTopOf="@+id/leaguesStarts_textView" />
-
-            <TextView
-                android:id="@+id/leagueEnds_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Ends: "
-                android:textSize="12sp"
-                android:textColor="@color/dark"
-                app:layout_constraintBottom_toBottomOf="@+id/dateLeaguesStarts_textView"
-                app:layout_constraintStart_toEndOf="@+id/dateLeaguesStarts_textView"
-                app:layout_constraintTop_toTopOf="@+id/dateLeaguesStarts_textView" />
-
-            <TextView
-                android:id="@+id/dateLeagueEnds_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="2020-08-09"
-                android:textSize="12sp"
-                android:textColor="@color/dark"
-                android:textStyle="italic"
-                app:layout_constraintBottom_toBottomOf="@+id/leagueEnds_textView"
-                app:layout_constraintStart_toEndOf="@+id/leagueEnds_textView"
-                app:layout_constraintTop_toTopOf="@+id/leagueEnds_textView" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </com.google.android.material.card.MaterialCardView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
