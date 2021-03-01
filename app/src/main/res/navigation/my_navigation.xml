@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/topLeagues"
-        android:name="com.example.footballfanapp.TopLeagues"
+        android:name="com.example.footballfanapp.ui.fragments.topLeagues.TopLeagues"
         android:label="Top Leagues"
         tools:layout="@layout/fragment_top_leagues" />
     <fragment
         android:id="@+id/upcomingMatches"
-        android:name="com.example.footballfanapp.UpcomingMatches"
+        android:name="com.example.footballfanapp.ui.fragments.upcomingMatches.UpcomingMatches"
         android:label="Upcoming Matches"
         tools:layout="@layout/fragment_upcoming_matches" />
     <fragment
         android:id="@+id/myFavouriteTeam"
-        android:name="com.example.footballfanapp.MyFavouriteTeam"
+        android:name="com.example.footballfanapp.ui.fragments.myFavouriteTeam.MyFavouriteTeam"
         android:label="Favourite Team"
         tools:layout="@layout/fragment_my_favourite_team" />
 </navigation>
