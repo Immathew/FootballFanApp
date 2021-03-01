@@ -1,6 +1,6 @@
-package com.example.footballfanapp
+package com.example.footballfanapp.data.network
 
-import com.example.footballfanapp.Constants.Companion.API_KEY
+import com.example.footballfanapp.util.Constants.Companion.API_KEY
 import com.example.footballfanapp.models.TopLeaguesModel
 import retrofit2.Response
 import retrofit2.http.GET

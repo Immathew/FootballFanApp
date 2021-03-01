@@ -1,4 +1,4 @@
-package com.example.footballfanapp
+package com.example.footballfanapp.util
 
 class Constants {
 
