@@ -2,10 +2,12 @@ package com.example.footballfanapp.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footballfanapp.databinding.TopLeaguesRowLayoutBinding
 import com.example.footballfanapp.models.Competition
 import com.example.footballfanapp.models.TopLeaguesModel
+import com.example.footballfanapp.util.CalculateDiffUtil
 
 class TopLeaguesAdapter : RecyclerView.Adapter<TopLeaguesAdapter.MyViewHolder>() {
 
@@ -46,8 +48,10 @@ class TopLeaguesAdapter : RecyclerView.Adapter<TopLeaguesAdapter.MyViewHolder>()
     }
 
     fun setData(newData: TopLeaguesModel) {
+        val competitionDiffUtil = CalculateDiffUtil(topLeagues, newData.competitions)
+        val diffUtilResult = DiffUtil.calculateDiff(competitionDiffUtil)
         topLeagues = newData.competitions
-        notifyDataSetChanged()
+        diffUtilResult.dispatchUpdatesTo(this)
     }
 
 }

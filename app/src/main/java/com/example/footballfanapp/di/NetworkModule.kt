@@ -1,5 +1,6 @@
 package com.example.footballfanapp.di
 
+import com.example.footballfanapp.data.network.MyInterceptor
 import com.example.footballfanapp.util.Constants.Companion.BASE_URL
 import com.example.footballfanapp.data.network.TopLeaguesApi
 import dagger.Module
@@ -19,10 +20,11 @@ object NetworkModule {
     @Singleton
     @Provides
     fun providesHttpClient(): OkHttpClient {
-        return OkHttpClient.Builder()
-            .readTimeout(15,TimeUnit.SECONDS)
-            .connectTimeout(15, TimeUnit.SECONDS)
-            .build()
+        return OkHttpClient.Builder().apply {
+            addInterceptor(MyInterceptor())
+            readTimeout(15, TimeUnit.SECONDS)
+            connectTimeout(15, TimeUnit.SECONDS)
+        }.build()
     }
 
     @Singleton

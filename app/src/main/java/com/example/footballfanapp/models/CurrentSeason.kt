@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class CurrentSeason(
     @SerializedName("endDate")
-    val endDate: String,
+    val endDate: String?,
     @SerializedName("startDate")
-    val startDate: String
+    val startDate: String?
 )

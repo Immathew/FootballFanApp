@@ -28,6 +28,7 @@
         android:alpha="0.7"
         android:contentDescription="@string/no_internet_connection_sad_face"
         android:src="@drawable/ic_sad_face"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -44,6 +45,7 @@
         android:text="@string/no_internet_connection"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@id/sadFace_imageView"
         app:layout_constraintStart_toStartOf="@id/sadFace_imageView"
         app:layout_constraintTop_toBottomOf="@+id/sadFace_imageView" />

@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -29,13 +30,15 @@ class MainViewModel @Inject constructor(
     }
 
     private suspend fun getTopLeaguesSafeCall(queries: Map<String, String>) {
-        topLeaguesResponse.value = NetworkResult.Loading()
+
         if (hasInternetConnection()) {
             try {
                 val response = repository.remote.getTopLeagues(queries)
+                Log.e("MainViewModel", "Próboiwałem się połączyć")
+
                 topLeaguesResponse.value = handleTopLeaguesResponse(response)
             } catch (e:Exception) {
-                topLeaguesResponse.value = NetworkResult.Error("Some kind of error")
+                topLeaguesResponse.value = NetworkResult.Error("response.message()")
             }
         } else {
             topLeaguesResponse.value = NetworkResult.Error("No internet connection")

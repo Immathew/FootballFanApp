@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Area(
     @SerializedName("ensignUrl")
-    val ensignUrl: Any,
+    val ensignUrl: String?,
     @SerializedName("name")
-    val name: String
+    val name: String?
 )
