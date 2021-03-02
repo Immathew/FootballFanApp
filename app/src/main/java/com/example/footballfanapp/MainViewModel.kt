@@ -34,11 +34,9 @@ class MainViewModel @Inject constructor(
         if (hasInternetConnection()) {
             try {
                 val response = repository.remote.getTopLeagues(queries)
-                Log.e("MainViewModel", "Próboiwałem się połączyć")
-
                 topLeaguesResponse.value = handleTopLeaguesResponse(response)
             } catch (e:Exception) {
-                topLeaguesResponse.value = NetworkResult.Error("response.message()")
+                topLeaguesResponse.value = NetworkResult.Error("Some kind of error")
             }
         } else {
             topLeaguesResponse.value = NetworkResult.Error("No internet connection")
