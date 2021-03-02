@@ -16,8 +16,7 @@ class TopLeaguesRowBinding {
              imageView.load(imageUrl) {
 
                 crossfade(600)
-                }
-
+             }
         }
     }
 }
