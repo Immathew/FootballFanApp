@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.footballfanapp.MainViewModel
 import com.example.footballfanapp.adapters.TopLeaguesAdapter
 import com.example.footballfanapp.databinding.FragmentTopLeaguesBinding
+import com.example.footballfanapp.models.TopLeaguesModel
 import com.example.footballfanapp.util.NetworkResult
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -47,7 +48,10 @@ class TopLeagues : Fragment() {
         mainViewModel.topLeaguesResponse.observe(viewLifecycleOwner, { response ->
             when(response){
                 is NetworkResult.Success -> {
-                    response.data?.let { mAdapter.setData(it) }
+                    val filteredLeagues = removeUnwantedLeagues(response)
+
+                    filteredLeagues.let {
+                        mAdapter.setData(it) }
                 }
                 is NetworkResult.Error -> {
                     Toast.makeText(
@@ -57,8 +61,20 @@ class TopLeagues : Fragment() {
                     ).show()
                 }
             }
-
         })
+    }
+
+    private fun removeUnwantedLeagues(topLeague: NetworkResult<TopLeaguesModel>): TopLeaguesModel {
+        val filter = topLeague.data?.competitions?.filterNot {
+            it.code == "BSA" || it.code == "CL" || it.code =="EC"
+                    || it.code == "WC" || it.code == "ELC"
+        }
+        val filter2 = topLeague.data?.competitions?.groupBy {
+            it.code
+        }
+
+
+        return TopLeaguesModel(filter!!)
     }
 
     private fun applyQuery(): HashMap<String, String> {

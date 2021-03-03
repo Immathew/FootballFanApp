@@ -28,6 +28,15 @@ class MainViewModel @Inject constructor(
         getTopLeaguesSafeCall(queries)
     }
 
+    fun getUpcomingMatches(queries: Map<String, String>) = viewModelScope.launch {
+        getUpcomingMatchesSafeCall(queries)
+    }
+
+    private fun getUpcomingMatchesSafeCall(queries: Map<String, String>) {
+        TODO("Not yet implemented")
+    }
+
+
     private suspend fun getTopLeaguesSafeCall(queries: Map<String, String>) {
         if (hasInternetConnection()) {
             try {
@@ -54,8 +63,8 @@ class MainViewModel @Inject constructor(
             }
             response.isSuccessful -> {
                 val topLeagues = response.body()
-                val filteredTopLeagues = removeUnwantedLeagues(topLeagues!!)
-                return NetworkResult.Success(filteredTopLeagues)
+//                val filteredTopLeagues = removeUnwantedLeagues(topLeagues!!)
+                return NetworkResult.Success(topLeagues!!)
             }
             else -> {
                 return NetworkResult.Error(response.message())
@@ -63,13 +72,16 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    private fun removeUnwantedLeagues(topLeague: TopLeaguesModel): TopLeaguesModel {
-        val filtered = topLeague.competitions.filterNot {
-            it.code == "BSA" || it.code == "CL" || it.code =="EC"
-                    || it.code == "WC" || it.code == "ELC"
-        }
-        return TopLeaguesModel(filtered)
-    }
+//    private fun removeUnwantedLeagues(topLeague: TopLeaguesModel): TopLeaguesModel {
+//        val filtered = topLeague.competitions.filterNot {
+//            it.code == "BSA" || it.code == "CL" || it.code =="EC"
+//                    || it.code == "WC" || it.code == "ELC"
+//        }
+//        val filtered2 = topLeague.competitions.sortedBy {
+//            it.code
+//        }
+//        return TopLeaguesModel(filtered2)
+//    }
 
     private fun hasInternetConnection(): Boolean {
         val connectivityManager = getApplication<Application>().getSystemService(

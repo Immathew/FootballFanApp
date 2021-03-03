@@ -46,7 +46,7 @@ class TopLeaguesAdapter : RecyclerView.Adapter<TopLeaguesAdapter.MyViewHolder>()
     override fun getItemCount(): Int {
        return topLeagues.size
     }
-
+    
     fun setData(newData: TopLeaguesModel) {
         val competitionDiffUtil = CalculateDiffUtil(topLeagues, newData.competitions)
         val diffUtilResult = DiffUtil.calculateDiff(competitionDiffUtil)
