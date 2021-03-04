@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class FullTime(
     @SerializedName("awayTeam")
-    val awayTeam: Any?,
+    val awayTeam: Int?,
     @SerializedName("homeTeam")
-    val homeTeam: Any?
+    val homeTeam: Int?
 )

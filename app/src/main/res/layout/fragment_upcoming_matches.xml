@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/topLeagues_sadFace_imageView"
+        android:id="@+id/upcomingMatches_sadFace_imageView"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:alpha="0.7"
@@ -37,7 +37,7 @@
         app:layout_constraintVertical_bias="0.407" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/upcomingMatches_error_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -46,9 +46,9 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@id/topLeagues_sadFace_imageView"
-        app:layout_constraintStart_toStartOf="@id/topLeagues_sadFace_imageView"
-        app:layout_constraintTop_toBottomOf="@+id/topLeagues_sadFace_imageView" />
+        app:layout_constraintEnd_toEndOf="@id/upcomingMatches_sadFace_imageView"
+        app:layout_constraintStart_toStartOf="@id/upcomingMatches_sadFace_imageView"
+        app:layout_constraintTop_toBottomOf="@+id/upcomingMatches_sadFace_imageView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

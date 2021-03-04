@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.footballfanapp.data.Repository
 import com.example.footballfanapp.models.TopLeaguesModel
+import com.example.footballfanapp.models.UpcomingMatchesModel
 import com.example.footballfanapp.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -23,6 +24,7 @@ class MainViewModel @Inject constructor(
 ) : AndroidViewModel(application) {
 
     var topLeaguesResponse: MutableLiveData<NetworkResult<TopLeaguesModel>> = MutableLiveData()
+    var upcomingMatchesResponse: MutableLiveData<NetworkResult<UpcomingMatchesModel>> = MutableLiveData()
 
     fun getTopLeagues(queries: Map<String, String>) = viewModelScope.launch {
         getTopLeaguesSafeCall(queries)
@@ -32,8 +34,39 @@ class MainViewModel @Inject constructor(
         getUpcomingMatchesSafeCall(queries)
     }
 
-    private fun getUpcomingMatchesSafeCall(queries: Map<String, String>) {
-        TODO("Not yet implemented")
+    private suspend fun getUpcomingMatchesSafeCall(queries: Map<String, String>) {
+        if (hasInternetConnection()) {
+            try {
+                val response = repository.remote.getUpcomingMatches(queries)
+                upcomingMatchesResponse.value = handleUpcomingMatchesResponse(response)
+            } catch (e: Exception) {
+                upcomingMatchesResponse.value = NetworkResult.Error("Some kind of error")
+            }
+        } else {
+            upcomingMatchesResponse.value = NetworkResult.Error("No internet connection")
+        }
+    }
+
+    private fun handleUpcomingMatchesResponse(response: Response<UpcomingMatchesModel>): NetworkResult<UpcomingMatchesModel> {
+        when {
+            response.code() == 404 -> {
+                return NetworkResult.Error("You tried to access a resource that doesn't exist")
+            }
+            response.code() == 429 -> {
+                return NetworkResult.Error("You exceeded your API request quota")
+            }
+            response.body()!!.matches.isNullOrEmpty() -> {
+                return NetworkResult.Error("Competitions not found")
+            }
+            response.isSuccessful -> {
+                val upcomingMatches = response.body()
+//                val filteredTopLeagues = removeUnwantedLeagues(topLeagues!!)
+                return NetworkResult.Success(upcomingMatches!!)
+            }
+            else -> {
+                return NetworkResult.Error(response.message())
+            }
+        }
     }
 
 

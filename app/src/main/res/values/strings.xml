@@ -9,4 +9,7 @@
     <string name="no_internet_connection_sad_face">No internet connection sad face</string>
     <string name="starts">Starts:</string>
     <string name="ends">Ends:</string>
+    <string name="colon">:</string>
+    <string name="halfTime_mark">HT</string>
+    <string name="fullTime_mark">FT</string>
 </resources>

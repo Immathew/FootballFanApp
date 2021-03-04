@@ -21,23 +21,28 @@ class TopLeagues : Fragment() {
     private lateinit var mainViewModel: MainViewModel
 
     private val mAdapter by lazy { TopLeaguesAdapter() }
-    private lateinit var binding: FragmentTopLeaguesBinding
+    private var _binding: FragmentTopLeaguesBinding? = null
+    private val binding get() = _binding!!
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentTopLeaguesBinding.inflate(inflater, container, false)
+        _binding = FragmentTopLeaguesBinding.inflate(inflater, container, false)
 
         binding.topLeaguesRecyclerView.adapter = mAdapter
         binding.topLeaguesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         requestApiData()
+
+
+
 
         return binding.root
     }
@@ -73,7 +78,6 @@ class TopLeagues : Fragment() {
             it.code
         }
 
-
         return TopLeaguesModel(filter!!)
     }
 
@@ -83,5 +87,10 @@ class TopLeagues : Fragment() {
         queries["plan"] = "TIER_ONE"
 
         return queries
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

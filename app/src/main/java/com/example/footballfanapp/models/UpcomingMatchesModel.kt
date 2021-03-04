@@ -6,5 +6,5 @@ import com.google.gson.annotations.SerializedName
 data class UpcomingMatchesModel(
 
     @SerializedName("matches")
-    val matches: List<Match>?
+    val matches: List<Match>
 )
