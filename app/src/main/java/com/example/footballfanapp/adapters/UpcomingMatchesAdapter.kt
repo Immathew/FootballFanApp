@@ -1,13 +1,17 @@
 package com.example.footballfanapp.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.footballfanapp.R
 import com.example.footballfanapp.databinding.UpcomingMatchesRowLayoutBinding
 import com.example.footballfanapp.models.Match
 import com.example.footballfanapp.models.UpcomingMatchesModel
 import com.example.footballfanapp.util.CalculateDiffUtil
+import com.google.android.material.card.MaterialCardView
 
 class UpcomingMatchesAdapter: RecyclerView.Adapter<UpcomingMatchesAdapter.MyViewHolder>() {
 
@@ -40,7 +44,14 @@ class UpcomingMatchesAdapter: RecyclerView.Adapter<UpcomingMatchesAdapter.MyView
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentMatch = upcomingMatches[position]
 
+        if (position > 0 && upcomingMatches[position - 1].competition.name?.substring(0,1) == currentMatch.competition.name?.substring(0,1)) {
+            holder.itemView.findViewById<MaterialCardView>(R.id.upcomingMatches_header_cardView).visibility = View.GONE
+        } else {
+            holder.itemView.findViewById<MaterialCardView>(R.id.upcomingMatches_header_cardView).visibility = View.VISIBLE
+        }
+
         holder.bind(currentMatch)
+
     }
 
     override fun getItemCount(): Int {

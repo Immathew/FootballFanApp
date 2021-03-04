@@ -18,6 +18,37 @@
         android:layout_marginBottom="5dp">
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/upcomingMatches_header_cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="3dp"
+            app:layout_constraintBottom_toTopOf="@+id/upcomingMatches_row_cardView"
+            app:layout_constraintEnd_toEndOf="@id/upcomingMatches_row_cardView"
+            app:layout_constraintStart_toStartOf="@id/upcomingMatches_row_cardView"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/upcomingMatchesLeagueName_textView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{match.competition.name}"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                tools:text="PREMIER LEAGUE" />
+
+            <ImageView
+                android:id="@+id/upcomingMatches_leagueFlag_imageView"
+                android:layout_width="55dp"
+                android:layout_height="27dp"
+                android:layout_marginStart="5dp"
+                loadImageFromUrl="@{match.competition.area.ensignUrl}"
+                tools:srcCompat="@tools:sample/avatars" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/upcomingMatches_row_cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -27,7 +58,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:strokeColor="@color/lightMediumGray"
             app:strokeWidth="2dp">
 

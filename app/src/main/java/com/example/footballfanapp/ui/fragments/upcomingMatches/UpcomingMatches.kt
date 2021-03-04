@@ -1,19 +1,16 @@
 package com.example.footballfanapp.ui.fragments.upcomingMatches
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.footballfanapp.MainViewModel
-import com.example.footballfanapp.R
 import com.example.footballfanapp.adapters.UpcomingMatchesAdapter
 import com.example.footballfanapp.databinding.FragmentUpcomingMatchesBinding
-import com.example.footballfanapp.models.TopLeaguesModel
 import com.example.footballfanapp.models.UpcomingMatchesModel
 import com.example.footballfanapp.util.NetworkResult
 import dagger.hilt.android.AndroidEntryPoint
@@ -51,12 +48,13 @@ class UpcomingMatches : Fragment() {
 
         mainViewModel.getUpcomingMatches(applyQuery())
         mainViewModel.upcomingMatchesResponse.observe(viewLifecycleOwner, { response ->
-            when(response){
+            when (response) {
                 is NetworkResult.Success -> {
                     val filteredMatches = removeUnwantedLeagues(response)
 
                     filteredMatches.let {
-                        mAdapter.setData(it) }
+                        mAdapter.setData(it)
+                    }
                 }
                 is NetworkResult.Error -> {
                     Toast.makeText(
@@ -69,23 +67,29 @@ class UpcomingMatches : Fragment() {
         })
     }
 
+
     private fun removeUnwantedLeagues(upcomingMatches: NetworkResult<UpcomingMatchesModel>): UpcomingMatchesModel {
 
-        val filter = upcomingMatches.data?.matches?.filterNot {
-            it.competition.code == "BSA" || it.competition.code == "CL" || it.competition.code =="EC"
-                    || it.competition.code == "WC" || it.competition.code == "ELC"
-        }
-        val sortByLeague = filter?.sortedBy {
+        val filter = upcomingMatches.data!!.matches.filterNot {
+            it.competition.name == "Série A" || it.competition.name == "UEFA Champions League" || it.competition.name == "Europe"
+                    || it.competition.name == "FIFA World Cup" || it.competition.name == "Championship"
+        }.sortedBy {
             it.competition.name
         }
 
-        return UpcomingMatchesModel(sortByLeague!!)
+//        val groupedByLeagues = sortByLeague?.groupBy {
+//            it.competition.name
+//        }
+//        val leagues = groupedByLeagues?.toList()
+
+        return UpcomingMatchesModel(filter)
     }
 
     private fun applyQuery(): HashMap<String, String> {
         val queries: HashMap<String, String> = HashMap()
 
-        queries[""] = ""
+        queries["dateFrom"] = "2021-03-06"
+        queries["dateTo"] = "2021-03-06"
 
         return queries
     }
@@ -95,3 +99,6 @@ class UpcomingMatches : Fragment() {
         _binding = null
     }
 }
+
+
+
