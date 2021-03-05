@@ -8,17 +8,19 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.footballfanapp.MainViewModel
+import com.example.footballfanapp.viewModels.MainViewModel
 import com.example.footballfanapp.adapters.TopLeaguesAdapter
 import com.example.footballfanapp.databinding.FragmentTopLeaguesBinding
 import com.example.footballfanapp.models.TopLeaguesModel
 import com.example.footballfanapp.util.NetworkResult
+import com.example.footballfanapp.viewModels.TopLeaguesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class TopLeagues : Fragment() {
 
     private lateinit var mainViewModel: MainViewModel
+    private lateinit var topLeaguesViewModel: TopLeaguesViewModel
 
     private val mAdapter by lazy { TopLeaguesAdapter() }
     private var _binding: FragmentTopLeaguesBinding? = null
@@ -28,6 +30,8 @@ class TopLeagues : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+        topLeaguesViewModel = ViewModelProvider(requireActivity()).get(TopLeaguesViewModel::class.java)
+
     }
 
     override fun onCreateView(
@@ -41,19 +45,16 @@ class TopLeagues : Fragment() {
 
         requestApiData()
 
-
-
-
         return binding.root
     }
 
     private fun requestApiData() {
 
-        mainViewModel.getTopLeagues(applyQuery())
+        mainViewModel.getTopLeagues(topLeaguesViewModel.applyQuery())
         mainViewModel.topLeaguesResponse.observe(viewLifecycleOwner, { response ->
             when(response){
                 is NetworkResult.Success -> {
-                    val filteredLeagues = removeUnwantedLeagues(response)
+                    val filteredLeagues = topLeaguesViewModel.removeUnwantedLeagues(response)
 
                     filteredLeagues.let {
                         mAdapter.setData(it) }
@@ -69,25 +70,6 @@ class TopLeagues : Fragment() {
         })
     }
 
-    private fun removeUnwantedLeagues(topLeague: NetworkResult<TopLeaguesModel>): TopLeaguesModel {
-        val filter = topLeague.data?.competitions?.filterNot {
-            it.code == "BSA" || it.code == "CL" || it.code =="EC"
-                    || it.code == "WC" || it.code == "ELC"
-        }
-        val filter2 = topLeague.data?.competitions?.groupBy {
-            it.code
-        }
-
-        return TopLeaguesModel(filter!!)
-    }
-
-    private fun applyQuery(): HashMap<String, String> {
-        val queries: HashMap<String, String> = HashMap()
-
-        queries["plan"] = "TIER_ONE"
-
-        return queries
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

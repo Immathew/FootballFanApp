@@ -7,5 +7,14 @@ class Constants {
         const val BASE_URL = "http://api.football-data.org"
         const val API_KEY = "5f97301a89174e3589fbdba1ca2bdf34"
 
+
+
+
+        // Api Query Keys
+        const val QUERY_PLAN = "plan"
+        const val QUERY_DATE_FROM = "dateFrom"
+        const val QUERY_DATE_TO = "dateTo"
+
+
     }
 }

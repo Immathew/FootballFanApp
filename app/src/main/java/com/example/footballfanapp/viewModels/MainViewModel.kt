@@ -1,4 +1,4 @@
-package com.example.footballfanapp
+package com.example.footballfanapp.viewModels
 
 import android.app.Application
 import android.content.Context

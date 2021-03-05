@@ -105,7 +105,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:text="@string/fullTime_mark"
+                    updateMatchTime = "@{match.utcDate}"
                     android:textSize="10sp"
                     app:layout_constraintBottom_toTopOf="@+id/colon_textView"
                     app:layout_constraintEnd_toEndOf="@+id/colon_textView"

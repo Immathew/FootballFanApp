@@ -12,6 +12,7 @@ import com.example.footballfanapp.models.Match
 import com.example.footballfanapp.models.UpcomingMatchesModel
 import com.example.footballfanapp.util.CalculateDiffUtil
 import com.google.android.material.card.MaterialCardView
+import okhttp3.internal.trimSubstring
 
 class UpcomingMatchesAdapter: RecyclerView.Adapter<UpcomingMatchesAdapter.MyViewHolder>() {
 
@@ -44,7 +45,7 @@ class UpcomingMatchesAdapter: RecyclerView.Adapter<UpcomingMatchesAdapter.MyView
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentMatch = upcomingMatches[position]
 
-        if (position > 0 && upcomingMatches[position - 1].competition.name?.substring(0,1) == currentMatch.competition.name?.substring(0,1)) {
+        if (position > 0 && upcomingMatches[position - 1].competition.name?.trimSubstring() == currentMatch.competition.name?.trimSubstring()) {
             holder.itemView.findViewById<MaterialCardView>(R.id.upcomingMatches_header_cardView).visibility = View.GONE
         } else {
             holder.itemView.findViewById<MaterialCardView>(R.id.upcomingMatches_header_cardView).visibility = View.VISIBLE
