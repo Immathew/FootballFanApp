@@ -2,15 +2,16 @@ package com.example.footballfanapp.bindingAdapters
 
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.example.footballfanapp.util.DateFormatter.Companion.getDateWithServerTimeStamp
 
 class UpcomingMatchesRowBinding {
+
     companion object {
-        @BindingAdapter("updateMatchTime", requireAll = true)
+        @BindingAdapter("displayMatchTime", requireAll = true)
         @JvmStatic
-        fun updateMatchTime(textView: TextView, time: String) {
-            textView.text = time.substring(11, 16)
+        fun updateMatchTime(textView: TextView, dateFromApi: String) {
+            val dateToStringWithLocalGMT = dateFromApi.getDateWithServerTimeStamp()
+            textView.text = dateToStringWithLocalGMT.toString().substring(11,16)
         }
-
     }
-
 }

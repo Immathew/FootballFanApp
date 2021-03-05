@@ -105,51 +105,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    updateMatchTime = "@{match.utcDate}"
-                    android:textSize="10sp"
+                    displayMatchTime = "@{match.utcDate}"
+                    android:textSize="14sp"
+                    android:textStyle="bold|italic"
                     app:layout_constraintBottom_toTopOf="@+id/colon_textView"
                     app:layout_constraintEnd_toEndOf="@+id/colon_textView"
                     app:layout_constraintStart_toStartOf="@+id/colon_textView"
                     tools:ignore="SmallSp" />
-
-                <TextView
-                    android:id="@+id/ht_textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="2dp"
-                    android:text="@string/halfTime_mark"
-                    android:textSize="8sp"
-                    app:layout_constraintEnd_toEndOf="@+id/colon_textView"
-                    app:layout_constraintStart_toStartOf="@+id/colon_textView"
-                    app:layout_constraintTop_toBottomOf="@+id/colon_textView"
-                    tools:ignore="SmallSp" />
-
-                <TextView
-                    android:id="@+id/homeTeamHT_score_textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
-                    android:text="@{String.valueOf(match.score.halfTime.homeTeam)}"
-                    android:textSize="10sp"
-                    app:layout_constraintBottom_toBottomOf="@id/ht_textView"
-                    app:layout_constraintEnd_toStartOf="@id/ht_textView"
-                    app:layout_constraintTop_toTopOf="@id/ht_textView"
-                    tools:ignore="SmallSp"
-                    tools:text="0" />
-
-                <TextView
-                    android:id="@+id/awayTeamHT_score_textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:text="@{String.valueOf(match.score.halfTime.awayTeam)}"
-                    android:textSize="10sp"
-                    app:layout_constraintBottom_toBottomOf="@id/ht_textView"
-                    app:layout_constraintStart_toEndOf="@+id/ht_textView"
-                    app:layout_constraintTop_toTopOf="@id/ht_textView"
-                    tools:ignore="SmallSp"
-                    tools:text="0" />
 
                 <TextView
                     android:id="@+id/homeTeam_name_textView"
