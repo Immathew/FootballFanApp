@@ -46,6 +46,10 @@ class UpcomingMatches : Fragment() {
         binding.upcomingMatchesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
 
+        binding.YesterdayChip.setOnClickListener {
+            upcomingMatchesViewModel.setYesterdayDate()
+            requestApiData()
+        }
         binding.todayChip.setOnClickListener {
             upcomingMatchesViewModel.setTodayDate()
             requestApiData()

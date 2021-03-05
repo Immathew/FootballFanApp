@@ -3,6 +3,7 @@ package com.example.footballfanapp.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -14,7 +15,7 @@ import com.example.footballfanapp.util.CalculateDiffUtil
 import com.google.android.material.card.MaterialCardView
 import okhttp3.internal.trimSubstring
 
-class UpcomingMatchesAdapter: RecyclerView.Adapter<UpcomingMatchesAdapter.MyViewHolder>() {
+class UpcomingMatchesAdapter : RecyclerView.Adapter<UpcomingMatchesAdapter.MyViewHolder>() {
 
     private var upcomingMatches = emptyList<Match>()
 
@@ -46,9 +47,34 @@ class UpcomingMatchesAdapter: RecyclerView.Adapter<UpcomingMatchesAdapter.MyView
         val currentMatch = upcomingMatches[position]
 
         if (position > 0 && upcomingMatches[position - 1].competition.name?.trimSubstring() == currentMatch.competition.name?.trimSubstring()) {
-            holder.itemView.findViewById<MaterialCardView>(R.id.upcomingMatches_header_cardView).visibility = View.GONE
+            holder.itemView.findViewById<TextView>(R.id.upcomingMatchesLeagueName_textView).visibility =
+                View.GONE
+            holder.itemView.findViewById<ImageView>(R.id.upcomingMatches_leagueFlag_imageView).visibility =
+                View.GONE
         } else {
-            holder.itemView.findViewById<MaterialCardView>(R.id.upcomingMatches_header_cardView).visibility = View.VISIBLE
+            holder.itemView.findViewById<TextView>(R.id.upcomingMatchesLeagueName_textView).visibility =
+                View.VISIBLE
+            holder.itemView.findViewById<ImageView>(R.id.upcomingMatches_leagueFlag_imageView).visibility =
+                View.VISIBLE
+        }
+
+        if (upcomingMatches[position].score?.fullTime?.homeTeam != null
+            || upcomingMatches[position].score?.fullTime?.awayTeam != null) {
+            holder.itemView.findViewById<TextView>(R.id.colon_textView).visibility = View.VISIBLE
+            holder.itemView.findViewById<TextView>(R.id.homeTeam_score_textView).visibility =
+                View.VISIBLE
+            holder.itemView.findViewById<TextView>(R.id.awayTeam_score_textView).visibility =
+                View.VISIBLE
+            holder.itemView.findViewById<TextView>(R.id.testingMatchTime_textView).visibility =
+                View.INVISIBLE
+        } else {
+            holder.itemView.findViewById<TextView>(R.id.colon_textView).visibility = View.INVISIBLE
+            holder.itemView.findViewById<TextView>(R.id.homeTeam_score_textView).visibility =
+                View.INVISIBLE
+            holder.itemView.findViewById<TextView>(R.id.awayTeam_score_textView).visibility =
+                View.INVISIBLE
+            holder.itemView.findViewById<TextView>(R.id.testingMatchTime_textView).visibility =
+                View.VISIBLE
         }
 
         holder.bind(currentMatch)

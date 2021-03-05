@@ -21,7 +21,7 @@ class UpcomingMatchesViewModel(application: Application) : AndroidViewModel(appl
             it.competition.name == "Série A" || it.competition.name == "UEFA Champions League" || it.competition.name == "Europe"
                     || it.competition.name == "FIFA World Cup" || it.competition.name == "Championship"
         }.sortedBy {
-            it.competition.name
+            it.competition.area?.name
         }
         return UpcomingMatchesModel(filter)
     }
@@ -43,5 +43,10 @@ class UpcomingMatchesViewModel(application: Application) : AndroidViewModel(appl
     fun setTomorrowDate() {
         dateFrom = "2021-03-06"
         dateTo = "2021-03-06"
+    }
+
+    fun setYesterdayDate() {
+        dateFrom = "2021-03-03"
+        dateTo = "2021-03-03"
     }
 }
