@@ -1,6 +1,8 @@
 package com.example.footballfanapp.ui.fragments.upcomingMatches
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.footballfanapp.viewModels.MainViewModel
 import com.example.footballfanapp.adapters.UpcomingMatchesAdapter
 import com.example.footballfanapp.databinding.FragmentUpcomingMatchesBinding
-import com.example.footballfanapp.models.UpcomingMatchesModel
-import com.example.footballfanapp.util.Constants.Companion.QUERY_DATE_FROM
-import com.example.footballfanapp.util.Constants.Companion.QUERY_DATE_TO
 import com.example.footballfanapp.util.NetworkResult
 import com.example.footballfanapp.viewModels.UpcomingMatchesViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
+import java.util.*
 
 @AndroidEntryPoint
 class UpcomingMatches : Fragment() {
@@ -27,7 +28,6 @@ class UpcomingMatches : Fragment() {
     private val mAdapter by lazy { UpcomingMatchesAdapter() }
     private var _binding: FragmentUpcomingMatchesBinding? = null
     private val binding get() = _binding!!
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +45,14 @@ class UpcomingMatches : Fragment() {
         binding.upcomingMatchesRecyclerView.adapter = mAdapter
         binding.upcomingMatchesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-
+        binding.dayBeforeYesterdayTwoChip.setOnClickListener {
+            upcomingMatchesViewModel.setDayBeforeYesterdayTwoDate()
+            requestApiData()
+        }
+        binding.dayBeforeYesterdayChip.setOnClickListener {
+            upcomingMatchesViewModel.setDayBeforeYesterdayDate()
+            requestApiData()
+        }
         binding.YesterdayChip.setOnClickListener {
             upcomingMatchesViewModel.setYesterdayDate()
             requestApiData()
@@ -58,8 +65,24 @@ class UpcomingMatches : Fragment() {
             upcomingMatchesViewModel.setTomorrowDate()
             requestApiData()
         }
+        binding.dayAfterTomorrowChip.setOnClickListener {
+            upcomingMatchesViewModel.setDayAfterTomorrowDate()
+            requestApiData()
+        }
+        binding.dayAfterTomorrowTwoChip.setOnClickListener {
+            upcomingMatchesViewModel.setDayAfterTomorrowTwoDate()
+            requestApiData()
+        }
 
         requestApiData()
+        setDatesInChips()
+
+        binding.upcomingMatchesHorizontalSV.post(Runnable {
+            binding.upcomingMatchesHorizontalSV.scrollTo(
+                binding.upcomingMatchesHorizontalSV.width / 2,
+                0
+            )
+        })
 
         return binding.root
     }
@@ -75,8 +98,14 @@ class UpcomingMatches : Fragment() {
                     filteredMatches.let {
                         mAdapter.setData(it)
                     }
+                    binding.upcomingMatchesRecyclerView.visibility = View.VISIBLE
+                    binding.upcomingMatchesSadFaceImageView.visibility = View.INVISIBLE
                 }
                 is NetworkResult.Error -> {
+                    if (response.message.toString() == "Our Top Leagues are not playing on this day :( ") {
+                        binding.upcomingMatchesRecyclerView.visibility = View.INVISIBLE
+                        binding.upcomingMatchesSadFaceImageView.visibility = View.VISIBLE
+                    }
                     Toast.makeText(
                         requireContext(),
                         response.message.toString(),
@@ -90,6 +119,27 @@ class UpcomingMatches : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun setDatesInChips() {
+        val dateToday = Calendar.getInstance()
+
+        dateToday.add(Calendar.DAY_OF_MONTH, -2)
+        val dayBeforeYesterday = SimpleDateFormat("dd-MM").format(dateToday.time)
+        binding.dayBeforeYesterdayChip.text = dayBeforeYesterday
+
+        dateToday.add(Calendar.DAY_OF_MONTH, -1)
+        val dayBeforeYesterdayTwo = SimpleDateFormat("dd-MM").format(dateToday.time)
+        binding.dayBeforeYesterdayTwoChip.text = dayBeforeYesterdayTwo
+
+        dateToday.add(Calendar.DAY_OF_MONTH, 5)
+        val dayAfterTomorrow = SimpleDateFormat("dd-MM").format(dateToday.time)
+        binding.dayAfterTomorrowChip.text = dayAfterTomorrow
+
+        dateToday.add(Calendar.DAY_OF_MONTH, 1)
+        val dayAfterTomorrowTwo = SimpleDateFormat("dd-MM").format(dateToday.time)
+        binding.dayAfterTomorrowTwoChip.text = dayAfterTomorrowTwo
     }
 }
 

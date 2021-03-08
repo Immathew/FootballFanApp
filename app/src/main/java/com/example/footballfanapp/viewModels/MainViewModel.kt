@@ -56,11 +56,10 @@ class MainViewModel @Inject constructor(
                 return NetworkResult.Error("You exceeded your API request quota")
             }
             response.body()!!.matches.isNullOrEmpty() -> {
-                return NetworkResult.Error("Competitions not found")
+                return NetworkResult.Error("Our Top Leagues are not playing on this day :( ")
             }
             response.isSuccessful -> {
                 val upcomingMatches = response.body()
-//                val filteredTopLeagues = removeUnwantedLeagues(topLeagues!!)
                 return NetworkResult.Success(upcomingMatches!!)
             }
             else -> {
@@ -96,7 +95,6 @@ class MainViewModel @Inject constructor(
             }
             response.isSuccessful -> {
                 val topLeagues = response.body()
-//                val filteredTopLeagues = removeUnwantedLeagues(topLeagues!!)
                 return NetworkResult.Success(topLeagues!!)
             }
             else -> {
@@ -104,17 +102,6 @@ class MainViewModel @Inject constructor(
             }
         }
     }
-
-//    private fun removeUnwantedLeagues(topLeague: TopLeaguesModel): TopLeaguesModel {
-//        val filtered = topLeague.competitions.filterNot {
-//            it.code == "BSA" || it.code == "CL" || it.code =="EC"
-//                    || it.code == "WC" || it.code == "ELC"
-//        }
-//        val filtered2 = topLeague.competitions.sortedBy {
-//            it.code
-//        }
-//        return TopLeaguesModel(filtered2)
-//    }
 
     private fun hasInternetConnection(): Boolean {
         val connectivityManager = getApplication<Application>().getSystemService(

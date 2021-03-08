@@ -12,4 +12,7 @@
     <string name="colon">:</string>
     <string name="halfTime_mark">HT</string>
     <string name="fullTime_mark">FT</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
 </resources>

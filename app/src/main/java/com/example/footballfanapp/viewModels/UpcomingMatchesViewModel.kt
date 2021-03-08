@@ -1,5 +1,6 @@
 package com.example.footballfanapp.viewModels
 
+import android.annotation.SuppressLint
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.example.footballfanapp.models.UpcomingMatchesModel
@@ -7,6 +8,8 @@ import com.example.footballfanapp.util.Constants
 import com.example.footballfanapp.util.Constants.Companion.QUERY_DATE_FROM
 import com.example.footballfanapp.util.Constants.Companion.QUERY_DATE_TO
 import com.example.footballfanapp.util.NetworkResult
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.collections.HashMap
 
 class UpcomingMatchesViewModel(application: Application) : AndroidViewModel(application) {
@@ -40,13 +43,64 @@ class UpcomingMatchesViewModel(application: Application) : AndroidViewModel(appl
         dateTo = ""
     }
 
-    fun setTomorrowDate() {
-        dateFrom = "2021-03-06"
-        dateTo = "2021-03-06"
+    @SuppressLint("SimpleDateFormat")
+    fun setDayAfterTomorrowTwoDate() {
+        val date = Calendar.getInstance()
+        date.add(Calendar.DAY_OF_MONTH,3)
+        val dateToQuery = SimpleDateFormat("yyyy-MM-dd").format(date.time)
+
+        dateFrom = dateToQuery
+        dateTo = dateToQuery
     }
 
-    fun setYesterdayDate() {
-        dateFrom = "2021-03-03"
-        dateTo = "2021-03-03"
+    @SuppressLint("SimpleDateFormat")
+    fun setDayAfterTomorrowDate() {
+        val date = Calendar.getInstance()
+        date.add(Calendar.DAY_OF_MONTH,2)
+        val dateToQuery = SimpleDateFormat("yyyy-MM-dd").format(date.time)
+
+        dateFrom = dateToQuery
+        dateTo = dateToQuery
     }
+
+    @SuppressLint("SimpleDateFormat")
+    fun setTomorrowDate() {
+        val date = Calendar.getInstance()
+        date.add(Calendar.DAY_OF_MONTH,1)
+        val dateToQuery = SimpleDateFormat("yyyy-MM-dd").format(date.time)
+
+        dateFrom = dateToQuery
+        dateTo = dateToQuery
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    fun setYesterdayDate() {
+        val date = Calendar.getInstance()
+        date.add(Calendar.DAY_OF_MONTH,-1)
+        val dateToQuery = SimpleDateFormat("yyyy-MM-dd").format(date.time)
+
+        dateFrom = dateToQuery
+        dateTo = dateToQuery
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    fun setDayBeforeYesterdayDate() {
+        val date = Calendar.getInstance()
+        date.add(Calendar.DAY_OF_MONTH,-2)
+        val dateToQuery = SimpleDateFormat("yyyy-MM-dd").format(date.time)
+
+        dateFrom = dateToQuery
+        dateTo = dateToQuery
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    fun setDayBeforeYesterdayTwoDate() {
+        val date = Calendar.getInstance()
+        date.add(Calendar.DAY_OF_MONTH,-3)
+        val dateToQuery = SimpleDateFormat("yyyy-MM-dd").format(date.time)
+
+        dateFrom = dateToQuery
+        dateTo = dateToQuery
+    }
+
 }
