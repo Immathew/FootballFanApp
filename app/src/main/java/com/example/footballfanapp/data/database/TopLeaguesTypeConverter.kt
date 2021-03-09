@@ -13,7 +13,7 @@ class TopLeaguesTypeConverter {
     fun topLeaguesModelToString(topLeaguesModel: TopLeaguesModel): String {
         return gson.toJson((topLeaguesModel))
     }
-
+    @TypeConverter
     fun stringToTopLeaguesModel(data: String): TopLeaguesModel {
         val listType = object : TypeToken<TopLeaguesModel>() {}.type
         return gson.fromJson(data, listType)

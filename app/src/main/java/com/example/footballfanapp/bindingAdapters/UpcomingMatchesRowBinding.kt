@@ -14,11 +14,5 @@ class UpcomingMatchesRowBinding {
             val dateToStringWithLocalGMT = dateFromApi.getDateWithServerTimeStamp()
             textView.text = dateToStringWithLocalGMT.toString().substring(11,16)
         }
-        @BindingAdapter("updateDateOnChip", requireAll = true)
-        @JvmStatic
-        fun updateDateOnChip(textView: Chip, dateFromApi: String?) {
-            val dateToStringWithLocalGMT = dateFromApi?.getDateWithServerTimeStamp()
-            textView.text = dateToStringWithLocalGMT.toString().substring(5,9)
-        }
     }
 }

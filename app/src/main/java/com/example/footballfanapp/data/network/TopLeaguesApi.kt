@@ -4,7 +4,6 @@ package com.example.footballfanapp.data.network
 import com.example.footballfanapp.models.Table
 import com.example.footballfanapp.models.TopLeaguesModel
 import com.example.footballfanapp.models.UpcomingMatchesModel
-import com.example.footballfanapp.util.Constants.Companion.LEAGUE_ID
 import retrofit2.Response
 import retrofit2.http.*
 

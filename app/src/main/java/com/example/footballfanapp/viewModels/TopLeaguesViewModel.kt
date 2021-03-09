@@ -17,6 +17,15 @@ class TopLeaguesViewModel(application: Application): AndroidViewModel(applicatio
         return TopLeaguesModel(filter!!)
     }
 
+    fun removeUnwantedLeaguesFromDatabase(topLeague: TopLeaguesModel): TopLeaguesModel {
+        val filter = topLeague.competitions.filterNot {
+            it.code == "BSA" || it.code == "CL" || it.code =="EC"
+                    || it.code == "WC" || it.code == "ELC"
+        }
+
+        return TopLeaguesModel(filter)
+    }
+
     fun applyQuery(): HashMap<String, String> {
         val queries: HashMap<String, String> = HashMap()
 

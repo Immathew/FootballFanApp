@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.footballfanapp.viewModels.MainViewModel
 import com.example.footballfanapp.adapters.TopLeaguesAdapter
@@ -15,6 +16,7 @@ import com.example.footballfanapp.models.TopLeaguesModel
 import com.example.footballfanapp.util.NetworkResult
 import com.example.footballfanapp.viewModels.TopLeaguesViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class TopLeagues : Fragment() {
@@ -43,9 +45,24 @@ class TopLeagues : Fragment() {
         binding.topLeaguesRecyclerView.adapter = mAdapter
         binding.topLeaguesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        requestApiData()
+        readDatabase()
 
         return binding.root
+    }
+
+    private fun readDatabase() {
+        lifecycleScope.launch {
+            mainViewModel.readTopLeagues.observe(viewLifecycleOwner, { database ->
+                if (database.isNotEmpty()) {
+                    val leagues = database[0].topLeaguesModel
+                    val filteredLeagues = topLeaguesViewModel.removeUnwantedLeaguesFromDatabase(leagues)
+                    mAdapter.setData(filteredLeagues)
+                }
+                else {
+                    requestApiData()
+                }
+            })
+        }
     }
 
     private fun requestApiData() {
