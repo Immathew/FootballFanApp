@@ -15,6 +15,7 @@ import com.example.footballfanapp.adapters.UpcomingMatchesAdapter
 import com.example.footballfanapp.databinding.FragmentUpcomingMatchesBinding
 import com.example.footballfanapp.util.NetworkResult
 import com.example.footballfanapp.viewModels.UpcomingMatchesViewModel
+import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
@@ -45,6 +46,22 @@ class UpcomingMatches : Fragment() {
         binding.upcomingMatchesRecyclerView.adapter = mAdapter
         binding.upcomingMatchesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
+
+        setChipsOnClickListeners()
+        requestApiData()
+        setDatesInChips()
+
+        binding.upcomingMatchesHorizontalSV.post(Runnable {
+            binding.upcomingMatchesHorizontalSV.scrollTo(
+                220,
+                0
+            )
+        })
+
+        return binding.root
+    }
+
+    private fun setChipsOnClickListeners() {
         binding.dayBeforeYesterdayTwoChip.setOnClickListener {
             upcomingMatchesViewModel.setDayBeforeYesterdayTwoDate()
             requestApiData()
@@ -73,18 +90,6 @@ class UpcomingMatches : Fragment() {
             upcomingMatchesViewModel.setDayAfterTomorrowTwoDate()
             requestApiData()
         }
-
-        requestApiData()
-        setDatesInChips()
-
-        binding.upcomingMatchesHorizontalSV.post(Runnable {
-            binding.upcomingMatchesHorizontalSV.scrollTo(
-                binding.upcomingMatchesHorizontalSV.width / 2,
-                0
-            )
-        })
-
-        return binding.root
     }
 
     private fun requestApiData() {
