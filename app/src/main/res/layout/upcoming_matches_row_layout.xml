@@ -50,12 +50,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="15dp"
-            app:strokeWidth="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:strokeColor="@color/lightMediumGray">
+            app:strokeColor="@color/lightMediumGray"
+            app:strokeWidth="2dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -67,7 +67,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/colon"
-                    android:textSize="24sp"
+                    android:layout_margin="2dp"
+                    android:textSize="18sp"
                     android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -78,9 +79,9 @@
                     android:id="@+id/homeTeam_score_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
+                    android:layout_margin="2dp"
                     android:text="@{String.valueOf(match.score.fullTime.homeTeam)}"
-                    android:textSize="24sp"
+                    android:textSize="18sp"
                     android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="@id/colon_textView"
                     app:layout_constraintEnd_toStartOf="@id/colon_textView"
@@ -91,9 +92,9 @@
                     android:id="@+id/awayTeam_score_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_margin="2dp"
                     android:text="@{String.valueOf(match.score.fullTime.awayTeam)}"
-                    android:textSize="24sp"
+                    android:textSize="18sp"
                     android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="@id/colon_textView"
                     app:layout_constraintStart_toEndOf="@+id/colon_textView"
@@ -105,21 +106,20 @@
                     displayMatchTime="@{match.utcDate}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:textSize="20sp"
+                    android:layout_margin="2dp"
+                    android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/awayTeam_name_textView"
-                    app:layout_constraintStart_toEndOf="@+id/homeTeam_name_textView"
+                    app:layout_constraintEnd_toStartOf="@+id/awayTeam_clubIcon_ImageView"
+                    app:layout_constraintStart_toEndOf="@+id/homeTeam_clubIcon_ImageView"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="20:00" />
 
 
                 <TextView
                     android:id="@+id/homeTeam_name_textView"
-                    android:layout_width="125dp"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
+                    android:layout_margin="4dp"
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="2"
@@ -127,16 +127,16 @@
                     android:textSize="12sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/homeTeam_score_textView"
-                    app:layout_constraintEnd_toStartOf="@+id/homeTeam_score_textView"
+                    app:layout_constraintEnd_toStartOf="@+id/homeTeam_clubIcon_ImageView"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/homeTeam_score_textView"
                     tools:text="Home Team name" />
 
                 <TextView
                     android:id="@+id/awayTeam_name_textView"
-                    android:layout_width="125dp"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_margin="4dp"
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="2"
@@ -145,9 +145,33 @@
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/awayTeam_score_textView"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/awayTeam_score_textView"
+                    app:layout_constraintStart_toEndOf="@id/awayTeam_clubIcon_ImageView"
                     app:layout_constraintTop_toTopOf="@+id/awayTeam_score_textView"
                     tools:text="Away Team name" />
+
+                <ImageView
+                    android:id="@+id/homeTeam_clubIcon_ImageView"
+                    loadClubImageFromUrl="@{match.homeTeam.id}"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="2dp"
+                    app:layout_constraintBottom_toBottomOf="@id/homeTeam_name_textView"
+                    app:layout_constraintEnd_toStartOf="@id/testingMatchTime_textView"
+                    app:layout_constraintStart_toEndOf="@id/homeTeam_name_textView"
+                    app:layout_constraintTop_toTopOf="@id/homeTeam_name_textView"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <ImageView
+                    android:id="@+id/awayTeam_clubIcon_ImageView"
+                    loadClubImageFromUrl="@{match.awayTeam.id}"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="2dp"
+                    app:layout_constraintBottom_toBottomOf="@id/awayTeam_name_textView"
+                    app:layout_constraintEnd_toStartOf="@id/awayTeam_name_textView"
+                    app:layout_constraintStart_toEndOf="@id/testingMatchTime_textView"
+                    app:layout_constraintTop_toTopOf="@id/awayTeam_name_textView"
+                    tools:srcCompat="@tools:sample/avatars" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

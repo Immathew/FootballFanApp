@@ -16,7 +16,6 @@ class Constants {
         const val QUERY_DATE_TO = "dateTo"
 
         //Room Database
-
         const val DATABASE_NAME = "top_leagues_database"
         const val TOP_LEAGUES_TABLE = "top_leagues_table"
 

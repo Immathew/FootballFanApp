@@ -15,5 +15,4 @@ interface TopLeaguesDao {
     @Query("SELECT * FROM top_leagues_table")
     fun readTopLeagues(): Flow<List<TopLeaguesEntity>>
 
-
 }
