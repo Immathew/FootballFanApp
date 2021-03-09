@@ -9,7 +9,11 @@
         android:id="@+id/topLeagues"
         android:name="com.example.footballfanapp.ui.fragments.topLeagues.TopLeagues"
         android:label="Top Leagues"
-        tools:layout="@layout/fragment_top_leagues" />
+        tools:layout="@layout/fragment_top_leagues" >
+        <action
+            android:id="@+id/action_topLeagues_to_leagueStandingsActivity"
+            app:destination="@id/leagueStandingsActivity" />
+    </fragment>
     <fragment
         android:id="@+id/upcomingMatches"
         android:name="com.example.footballfanapp.ui.fragments.upcomingMatches.UpcomingMatches"
@@ -20,4 +24,13 @@
         android:name="com.example.footballfanapp.ui.fragments.myFavouriteTeam.MyFavouriteTeam"
         android:label="Favourite Team"
         tools:layout="@layout/fragment_my_favourite_team" />
+    <activity
+        android:id="@+id/leagueStandingsActivity"
+        android:name="com.example.footballfanapp.ui.LeagueStandingsActivity"
+        android:label="activity_league_standings"
+        tools:layout="@layout/activity_league_standings" >
+        <argument
+            android:name="competition_Id"
+            app:argType="integer" />
+    </activity>
 </navigation>

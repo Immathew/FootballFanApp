@@ -23,4 +23,6 @@
 
     <color name="chipBackgroundColor">@color/white</color>
     <color name="chipTextColor">@color/darkGray</color>
+
+    <color name="actionBarBackgroundColor">@color/colorPrimary</color>
 </resources>

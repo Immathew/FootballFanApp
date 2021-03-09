@@ -12,6 +12,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topLeagues_row_layout"
+        onTopLeaguesRowClickListener="@{competition.id}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -124,8 +125,6 @@
                     app:layout_constraintStart_toEndOf="@+id/leagueEnds_textView"
                     app:layout_constraintTop_toTopOf="@+id/leagueEnds_textView" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
         </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
