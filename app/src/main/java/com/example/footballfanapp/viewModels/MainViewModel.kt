@@ -4,14 +4,14 @@ import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.footballfanapp.data.Repository
+import com.example.footballfanapp.data.database.TopLeaguesEntity
 import com.example.footballfanapp.models.TopLeaguesModel
 import com.example.footballfanapp.models.UpcomingMatchesModel
 import com.example.footballfanapp.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import java.lang.Exception
@@ -23,8 +23,21 @@ class MainViewModel @Inject constructor(
     application: Application
 ) : AndroidViewModel(application) {
 
+    /** ROOM DATABASE*/
+
+    var readTopLeagues: LiveData<List<TopLeaguesEntity>> =
+        repository.local.readDatabase().asLiveData()
+
+    private fun insertTopLeagues(topLeaguesEntity: TopLeaguesEntity) =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.insertTopLeagues(topLeaguesEntity)
+        }
+
+
+    /** RETROFIT */
     var topLeaguesResponse: MutableLiveData<NetworkResult<TopLeaguesModel>> = MutableLiveData()
-    var upcomingMatchesResponse: MutableLiveData<NetworkResult<UpcomingMatchesModel>> = MutableLiveData()
+    var upcomingMatchesResponse: MutableLiveData<NetworkResult<UpcomingMatchesModel>> =
+        MutableLiveData()
 
     fun getTopLeagues(queries: Map<String, String>) = viewModelScope.launch {
         getTopLeaguesSafeCall(queries)
@@ -74,6 +87,11 @@ class MainViewModel @Inject constructor(
             try {
                 val response = repository.remote.getTopLeagues(queries)
                 topLeaguesResponse.value = handleTopLeaguesResponse(response)
+
+                val topLeaguesModel = topLeaguesResponse.value!!.data
+                if (topLeaguesModel != null) {
+                    offlineCacheTopLeagues(topLeaguesModel)
+                }
             } catch (e: Exception) {
                 topLeaguesResponse.value = NetworkResult.Error("Some kind of error")
             }
@@ -82,7 +100,12 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    private fun handleTopLeaguesResponse(response: Response<TopLeaguesModel>): NetworkResult<TopLeaguesModel>? {
+    private fun offlineCacheTopLeagues(topLeaguesModel: TopLeaguesModel) {
+        val topLeaguesEntity = TopLeaguesEntity(topLeaguesModel)
+        insertTopLeagues(topLeaguesEntity)
+    }
+
+    private fun handleTopLeaguesResponse(response: Response<TopLeaguesModel>): NetworkResult<TopLeaguesModel> {
         when {
             response.code() == 404 -> {
                 return NetworkResult.Error("You tried to access a resource that doesn't exist")
