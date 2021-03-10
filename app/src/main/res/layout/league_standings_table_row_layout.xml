@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="table"
             type="com.example.footballfanapp.models.Table" />
@@ -12,11 +11,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="2dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -25,8 +25,9 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="45dp"
+                android:orientation="horizontal"
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/position"
@@ -35,13 +36,15 @@
                     android:layout_gravity="center"
                     android:layout_margin="3dp"
                     android:gravity="center"
-                    android:text="12"
+                    android:text="@{String.valueOf(table.position)}"
+                    tools:text="5"
                     android:textSize="14sp" />
 
                 <ImageView
                     android:id="@+id/clubIcon_imageView"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    loadImageFromUrl="@{table.team.crestUrl}"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:layout_margin="3dp"
                     android:cropToPadding="true"
@@ -54,8 +57,9 @@
                     android:layout_gravity="center"
                     android:layout_margin="3dp"
                     android:maxLines="2"
-                    android:text="Wolverhampton  FC"
-                    android:textSize="14sp" />
+                    android:text="@{table.team.name}"
+                    android:textSize="14sp"
+                    tools:text="Wolverhampton wolves FC" />
 
                 <TextView
                     android:id="@+id/matchesPlayed"
@@ -64,7 +68,8 @@
                     android:layout_gravity="center"
                     android:layout_margin="3dp"
                     android:gravity="center"
-                    android:text="28"
+                    tools:text="5"
+                    android:text="@{String.valueOf(table.playedGames)}"
                     android:textSize="14sp" />
 
                 <TextView
@@ -74,7 +79,8 @@
                     android:layout_gravity="center"
                     android:layout_margin="3dp"
                     android:gravity="center"
-                    android:text="20"
+                    tools:text="5"
+                    android:text="@{String.valueOf(table.won)}"
                     android:textSize="14sp" />
 
                 <TextView
@@ -84,7 +90,7 @@
                     android:layout_gravity="center"
                     android:layout_margin="3dp"
                     android:gravity="center"
-                    android:text="5"
+                    android:text="@{String.valueOf(table.draw)}"
                     android:textSize="14sp" />
 
                 <TextView
@@ -94,7 +100,7 @@
                     android:layout_gravity="center"
                     android:layout_margin="3dp"
                     android:gravity="center"
-                    android:text="3"
+                    android:text="@{String.valueOf(table.lost)}"
                     android:textSize="14sp" />
 
                 <TextView
@@ -104,7 +110,7 @@
                     android:layout_gravity="center"
                     android:layout_margin="3dp"
                     android:gravity="center"
-                    android:text="56"
+                    android:text="@{String.valueOf(table.goalsFor)}"
                     android:textSize="14sp" />
 
                 <TextView
@@ -114,7 +120,7 @@
                     android:layout_gravity="center"
                     android:layout_margin="3dp"
                     android:gravity="center"
-                    android:text="195"
+                    android:text="@{String.valueOf(table.goalsAgainst)}"
                     android:textSize="14sp" />
 
                 <TextView
@@ -124,7 +130,7 @@
                     android:layout_gravity="center"
                     android:layout_margin="3dp"
                     android:gravity="center"
-                    android:text="37"
+                    android:text="@{String.valueOf(table.goalDifference)}"
                     android:textSize="14sp" />
 
                 <TextView
@@ -134,7 +140,7 @@
                     android:layout_gravity="center"
                     android:layout_margin="3dp"
                     android:gravity="center"
-                    android:text="65"
+                    android:text="@{String.valueOf(table.points)}"
                     android:textSize="14sp" />
 
             </LinearLayout>

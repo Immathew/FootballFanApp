@@ -39,6 +39,7 @@ class MainViewModel @Inject constructor(
     var upcomingMatchesResponse: MutableLiveData<NetworkResult<UpcomingMatchesModel>> =
         MutableLiveData()
 
+
     fun getTopLeagues(queries: Map<String, String>) = viewModelScope.launch {
         getTopLeaguesSafeCall(queries)
     }

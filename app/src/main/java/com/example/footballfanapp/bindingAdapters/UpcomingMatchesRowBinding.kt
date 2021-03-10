@@ -20,7 +20,6 @@ class UpcomingMatchesRowBinding {
         @BindingAdapter("loadClubImageFromUrl",requireAll = true)
         @JvmStatic
         fun loadClubImageFromUrl(imageView: ImageView, teamId: Int?) {
-//            val teamID = teamId.toString()
             val imageUrl = "https://crests.football-data.org/$teamId.svg"
 
             imageView.load(imageUrl) {

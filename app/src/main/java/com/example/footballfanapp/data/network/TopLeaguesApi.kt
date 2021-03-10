@@ -1,7 +1,7 @@
 package com.example.footballfanapp.data.network
 
 
-import com.example.footballfanapp.models.Table
+import com.example.footballfanapp.models.LeagueStanding
 import com.example.footballfanapp.models.TopLeaguesModel
 import com.example.footballfanapp.models.UpcomingMatchesModel
 import retrofit2.Response
@@ -21,7 +21,6 @@ interface TopLeaguesApi {
 
     @GET("v2/competitions/{id}/standings")
     suspend fun getLeagueStanding(
-        @Path("id")leagueId: Int,
-        @QueryMap queries: Map<String, String>
-    ): Response<Table>
+        @Path("id") leagueId: Int
+    ): Response<LeagueStanding>
 }

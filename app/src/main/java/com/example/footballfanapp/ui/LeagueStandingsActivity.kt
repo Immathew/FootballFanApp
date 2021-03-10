@@ -13,7 +13,9 @@ import com.example.footballfanapp.ui.fragments.leagueTable.LeagueTableFragment
 import com.example.footballfanapp.ui.fragments.leagueTopScorers.LeagueTopScorersFragment
 import com.example.footballfanapp.ui.fragments.leagueUpcomingMatches.LeagueUpcomingMatchesFragment
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LeagueStandingsActivity : AppCompatActivity() {
 
     private val args by navArgs<LeagueStandingsActivityArgs>()
