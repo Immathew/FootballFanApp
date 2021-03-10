@@ -118,7 +118,7 @@
                 <TextView
                     android:id="@+id/homeTeam_name_textView"
                     android:layout_width="120dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_margin="4dp"
                     android:ellipsize="end"
                     android:gravity="center"
@@ -130,12 +130,12 @@
                     app:layout_constraintEnd_toStartOf="@+id/homeTeam_clubIcon_ImageView"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/homeTeam_score_textView"
-                    tools:text="Home Team name" />
+                    tools:text="West Bromich albion FC" />
 
                 <TextView
                     android:id="@+id/awayTeam_name_textView"
                     android:layout_width="120dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_margin="4dp"
                     android:ellipsize="end"
                     android:gravity="center"
