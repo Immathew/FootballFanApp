@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.footballfanapp.data.Repository
 import com.example.footballfanapp.data.database.TopLeaguesEntity
@@ -74,6 +75,7 @@ class MainViewModel @Inject constructor(
             }
             response.isSuccessful -> {
                 val upcomingMatches = response.body()
+                Log.d("UPCOMING_MATCHES", "$upcomingMatches")
                 return NetworkResult.Success(upcomingMatches!!)
             }
             else -> {

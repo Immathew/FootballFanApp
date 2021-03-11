@@ -1,7 +1,6 @@
 package com.example.footballfanapp.ui.fragments.leagueTable
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.footballfanapp.adapters.LeagueTableAdapter
 import com.example.footballfanapp.databinding.FragmentLeagueTableBinding
 import com.example.footballfanapp.models.Standing
-import com.example.footballfanapp.util.Constants.Companion.QUERY_STANDING_TYPE
 import com.example.footballfanapp.util.NetworkResult
 import com.example.footballfanapp.viewModels.LeagueStandingsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,8 +38,8 @@ class LeagueTableFragment : Fragment() {
     ): View {
         _binding = FragmentLeagueTableBinding.inflate(inflater, container, false)
 
-        binding.leagueUpcomingMatchesRecyclerView.adapter = mAdapter
-        binding.leagueUpcomingMatchesRecyclerView.layoutManager =
+        binding.leagueTableRecyclerView.adapter = mAdapter
+        binding.leagueTableRecyclerView.layoutManager =
             LinearLayoutManager(requireContext())
 
         val args = arguments

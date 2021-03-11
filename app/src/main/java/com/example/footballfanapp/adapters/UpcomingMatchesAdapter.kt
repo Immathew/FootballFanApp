@@ -12,7 +12,6 @@ import com.example.footballfanapp.databinding.UpcomingMatchesRowLayoutBinding
 import com.example.footballfanapp.models.Match
 import com.example.footballfanapp.models.UpcomingMatchesModel
 import com.example.footballfanapp.util.CalculateDiffUtil
-import com.google.android.material.card.MaterialCardView
 import okhttp3.internal.trimSubstring
 
 class UpcomingMatchesAdapter : RecyclerView.Adapter<UpcomingMatchesAdapter.MyViewHolder>() {

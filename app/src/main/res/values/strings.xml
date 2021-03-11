@@ -18,4 +18,6 @@
     <string name="total">TOTAL</string>
     <string name="home">HOME</string>
     <string name="away">AWAY</string>
+    <string name="finished">FINISHED</string>
+    <string name="scheduled">SCHEDULED</string>
 </resources>

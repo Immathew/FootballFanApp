@@ -4,12 +4,12 @@ import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.footballfanapp.data.Repository
 import com.example.footballfanapp.models.LeagueStanding
+import com.example.footballfanapp.models.UpcomingMatchesModel
 import com.example.footballfanapp.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -28,9 +28,32 @@ class LeagueStandingsViewModel @Inject constructor(
     var leagueStandingResponse: MutableLiveData<NetworkResult<LeagueStanding>> =
         MutableLiveData()
 
+    var leagueUpcomingMatchesResponse: MutableLiveData<NetworkResult<UpcomingMatchesModel>> =
+        MutableLiveData()
+
+
     fun getLeagueStanding(leagueId: Int) = viewModelScope.launch {
         getStandingSafeCall(leagueId)
     }
+
+    fun getLeagueUpcomingMatches(leagueId: Int, queries: Map<String, String>) =
+        viewModelScope.launch {
+            getLeagueUpcomingMatchesSafeCall(leagueId, queries)
+        }
+
+    private suspend fun getLeagueUpcomingMatchesSafeCall(leagueId: Int, queries: Map<String, String>) {
+        if (hasInternetConnection()) {
+            try {
+                val response = repository.remote.getLeagueUpcomingMatches(leagueId,queries)
+                leagueUpcomingMatchesResponse.value = handleLeagueUpcomingMatchesResponse(response)
+            } catch (e: Exception) {
+                leagueUpcomingMatchesResponse.value = NetworkResult.Error("Some kind of error")
+            }
+        } else {
+            leagueUpcomingMatchesResponse.value = NetworkResult.Error("No internet connection")
+        }
+    }
+
 
     private suspend fun getStandingSafeCall(leagueId: Int) {
         if (hasInternetConnection()) {
@@ -59,6 +82,29 @@ class LeagueStandingsViewModel @Inject constructor(
             response.isSuccessful -> {
                 val leagueStanding = response.body()
                 return NetworkResult.Success(leagueStanding!!)
+            }
+            else -> {
+                return NetworkResult.Error(response.message())
+            }
+        }
+    }
+
+    private fun handleLeagueUpcomingMatchesResponse(
+        response: Response<UpcomingMatchesModel>
+    ): NetworkResult<UpcomingMatchesModel> {
+        when {
+            response.code() == 404 -> {
+                return NetworkResult.Error("You tried to access a resource that doesn't exist")
+            }
+            response.code() == 429 -> {
+                return NetworkResult.Error("You exceeded your API request quota")
+            }
+            response.body()!!.matches.isNullOrEmpty() -> {
+                return NetworkResult.Error("League Table is Empty")
+            }
+            response.isSuccessful -> {
+                val leagueUpcomingMatches = response.body()
+                return NetworkResult.Success(leagueUpcomingMatches!!)
             }
             else -> {
                 return NetworkResult.Error(response.message())

@@ -23,4 +23,10 @@ interface TopLeaguesApi {
     suspend fun getLeagueStanding(
         @Path("id") leagueId: Int
     ): Response<LeagueStanding>
+
+    @GET("v2/competitions/{id}/matches")
+    suspend fun getLeagueUpcomingMatches(
+        @Path("id") leagueId: Int,
+        @QueryMap queries: Map<String, String>
+    ): Response<UpcomingMatchesModel>
 }

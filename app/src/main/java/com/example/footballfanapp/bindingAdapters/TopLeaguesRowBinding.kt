@@ -14,9 +14,9 @@ class TopLeaguesRowBinding {
 
     companion object {
 
-        @BindingAdapter("onTopLeaguesRowClickListener")
+        @BindingAdapter("onTopLeaguesRowClickListener",)
         @JvmStatic
-        fun onTopLeaguesRowClickListener(topLeaguesRowLayout: ConstraintLayout, competitionId: Int) {
+        fun onTopLeaguesRowClickListener(topLeaguesRowLayout: ConstraintLayout, competitionId: Int,) {
             topLeaguesRowLayout.setOnClickListener {
                 try {
                     val action =

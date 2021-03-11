@@ -14,6 +14,7 @@ class RemoteDataSource @Inject constructor(
     suspend fun getTopLeagues(queries: Map<String, String>): Response<TopLeaguesModel> {
         return topLeaguesApi.getTopLeagues(queries)
     }
+
     suspend fun getUpcomingMatches(queries: Map<String, String>): Response<UpcomingMatchesModel> {
         return topLeaguesApi.getUpcomingMatches(queries)
     }
@@ -22,4 +23,10 @@ class RemoteDataSource @Inject constructor(
         return topLeaguesApi.getLeagueStanding(leagueId)
     }
 
+    suspend fun getLeagueUpcomingMatches(
+        leagueId: Int,
+        queries: Map<String, String>
+    ): Response<UpcomingMatchesModel> {
+        return topLeaguesApi.getLeagueUpcomingMatches(leagueId, queries)
+    }
 }
