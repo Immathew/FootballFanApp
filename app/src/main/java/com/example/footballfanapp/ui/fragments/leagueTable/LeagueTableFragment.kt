@@ -86,20 +86,26 @@ class LeagueTableFragment : Fragment() {
     }
 
     private fun setStandingTypeAway() {
-        standingList!!.let {
-            mAdapter.setData(it[2])
+        if(standingList != null) {
+            standingList!!.let {
+                mAdapter.setData(it[2])
+            }
         }
     }
 
     private fun setStandingTypeHome() {
-        standingList!!.let {
-            mAdapter.setData(it[1])
+        if(standingList != null) {
+            standingList!!.let {
+                mAdapter.setData(it[1])
+            }
         }
     }
 
     private fun setStandingTypeTotal() {
-        standingList!!.let {
-            mAdapter.setData(it[0])
+        if(standingList != null) {
+            standingList!!.let {
+                mAdapter.setData(it[0])
+            }
         }
     }
 

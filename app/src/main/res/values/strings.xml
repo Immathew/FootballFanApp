@@ -24,4 +24,12 @@
     <string name="goals">Goals</string>
     <string name="position">Position</string>
     <string name="sharp">#</string>
+    <string name="team_name">Team Name</string>
+    <string name="m">M</string>
+    <string name="w">W</string>
+    <string name="d">D</string>
+    <string name="l">L</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="pts">Pts</string>
 </resources>

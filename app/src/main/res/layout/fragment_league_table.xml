@@ -6,6 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="5dp"
         android:background="@color/lightGray"
         tools:context=".ui.fragments.leagueTable.LeagueTableFragment">
 
@@ -66,8 +67,7 @@
             android:id="@+id/tableNames_constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
+            android:foregroundGravity="center"
             app:layout_constraintBottom_toTopOf="@id/leagueTableRecyclerView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -87,6 +87,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:gravity="center"
                     android:background="@color/lightGray">
 
                     <TextView
@@ -94,9 +95,9 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_gravity="center"
-                        android:layout_margin="3dp"
+                        android:layout_margin="2dp"
                         android:gravity="center"
-                        android:text="#"
+                        android:text="@string/sharp"
                         android:textSize="14sp" />
 
                     <ImageView
@@ -104,7 +105,7 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_gravity="center"
-                        android:layout_margin="3dp"
+                        android:layout_margin="2dp"
                         android:cropToPadding="true"
                         tools:srcCompat="@tools:sample/avatars" />
 
@@ -113,9 +114,9 @@
                         android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_margin="3dp"
+                        android:layout_margin="2dp"
                         android:maxLines="2"
-                        android:text="Team Name "
+                        android:text="@string/team_name"
                         android:textSize="14sp" />
 
                     <TextView
@@ -123,9 +124,9 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_gravity="center"
-                        android:layout_margin="3dp"
+                        android:layout_margin="2dp"
                         android:gravity="center"
-                        android:text="M"
+                        android:text="@string/m"
                         android:textSize="14sp" />
 
                     <TextView
@@ -133,9 +134,9 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_gravity="center"
-                        android:layout_margin="3dp"
+                        android:layout_margin="2dp"
                         android:gravity="center"
-                        android:text="W"
+                        android:text="@string/w"
                         android:textSize="14sp" />
 
                     <TextView
@@ -143,9 +144,9 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_gravity="center"
-                        android:layout_margin="3dp"
+                        android:layout_margin="2dp"
                         android:gravity="center"
-                        android:text="D"
+                        android:text="@string/d"
                         android:textSize="14sp" />
 
                     <TextView
@@ -153,9 +154,9 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_gravity="center"
-                        android:layout_margin="3dp"
+                        android:layout_margin="2dp"
                         android:gravity="center"
-                        android:text="L"
+                        android:text="@string/l"
                         android:textSize="14sp" />
 
                     <TextView
@@ -163,9 +164,9 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_gravity="center"
-                        android:layout_margin="3dp"
+                        android:layout_margin="2dp"
                         android:gravity="center"
-                        android:text="+"
+                        android:text="@string/plus"
                         android:textSize="14sp" />
 
                     <TextView
@@ -173,19 +174,9 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_gravity="center"
-                        android:layout_margin="3dp"
+                        android:layout_margin="2dp"
                         android:gravity="center"
-                        android:text="-"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/goalDifference"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="3dp"
-                        android:gravity="center"
-                        android:text="="
+                        android:text="@string/minus"
                         android:textSize="14sp" />
 
                     <TextView
@@ -193,9 +184,9 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_gravity="center"
-                        android:layout_margin="3dp"
+                        android:layout_margin="2dp"
                         android:gravity="center"
-                        android:text="Pts"
+                        android:text="@string/pts"
                         android:textSize="12sp" />
 
                 </LinearLayout>
@@ -206,8 +197,6 @@
             android:id="@+id/leagueTableRecyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

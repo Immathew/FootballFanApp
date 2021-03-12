@@ -28,7 +28,8 @@ class LeagueTopScorersFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        leagueStandingsViewModel = ViewModelProvider(requireActivity()).get(LeagueStandingsViewModel::class.java)
+        leagueStandingsViewModel =
+            ViewModelProvider(requireActivity()).get(LeagueStandingsViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -43,7 +44,7 @@ class LeagueTopScorersFragment : Fragment() {
         val args = arguments
         val leagueIdFromMyBundle = args!!.getInt("leagueId")
 
-        requestApiData(leagueIdFromMyBundle,applyQueries())
+        requestApiData(leagueIdFromMyBundle, applyQueries())
 
         return binding.root
     }
@@ -60,7 +61,6 @@ class LeagueTopScorersFragment : Fragment() {
                         response.data!!.let {
                             mAdapter.setData(it)
                         }
-
                     }
                     is NetworkResult.Error -> {
                         Toast.makeText(
