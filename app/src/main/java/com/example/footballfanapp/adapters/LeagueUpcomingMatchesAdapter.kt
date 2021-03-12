@@ -68,7 +68,6 @@ class LeagueUpcomingMatchesAdapter :
             holder.itemView.findViewById<TextView>(R.id.leagueMatchTime_textView).visibility =
                 View.VISIBLE
         }
-
         holder.bind(currentLeagueMatch)
     }
 

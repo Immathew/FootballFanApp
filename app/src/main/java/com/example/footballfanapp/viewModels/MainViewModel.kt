@@ -70,12 +70,11 @@ class MainViewModel @Inject constructor(
             response.code() == 429 -> {
                 return NetworkResult.Error("You exceeded your API request quota")
             }
-            response.body()!!.matches.isNullOrEmpty() -> {
+            response.body()?.matches.isNullOrEmpty() -> {
                 return NetworkResult.Error("Our Top Leagues are not playing on this day :( ")
             }
             response.isSuccessful -> {
                 val upcomingMatches = response.body()
-                Log.d("UPCOMING_MATCHES", "$upcomingMatches")
                 return NetworkResult.Success(upcomingMatches!!)
             }
             else -> {

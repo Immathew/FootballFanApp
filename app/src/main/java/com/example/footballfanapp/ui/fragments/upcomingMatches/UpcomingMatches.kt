@@ -105,11 +105,15 @@ class UpcomingMatches : Fragment() {
                     }
                     binding.upcomingMatchesRecyclerView.visibility = View.VISIBLE
                     binding.upcomingMatchesSadFaceImageView.visibility = View.INVISIBLE
+                    binding.upcomingMatchesErrorTextView.visibility = View.INVISIBLE
+
                 }
                 is NetworkResult.Error -> {
                     if (response.message.toString() == "Our Top Leagues are not playing on this day :( ") {
                         binding.upcomingMatchesRecyclerView.visibility = View.INVISIBLE
                         binding.upcomingMatchesSadFaceImageView.visibility = View.VISIBLE
+                        binding.upcomingMatchesErrorTextView.visibility = View.VISIBLE
+                        binding.upcomingMatchesErrorTextView.text = "Our Top Leagues are not playing on this day :( "
                     }
                     Toast.makeText(
                         requireContext(),
