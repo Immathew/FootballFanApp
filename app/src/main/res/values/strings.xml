@@ -20,4 +20,8 @@
     <string name="away">AWAY</string>
     <string name="finished">FINISHED</string>
     <string name="scheduled">SCHEDULED</string>
+    <string name="player_name">Player Name</string>
+    <string name="goals">Goals</string>
+    <string name="position">Position</string>
+    <string name="sharp">#</string>
 </resources>

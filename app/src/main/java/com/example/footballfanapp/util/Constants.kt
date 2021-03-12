@@ -14,6 +14,8 @@ class Constants {
         const val QUERY_PLAN = "plan"
         const val QUERY_DATE_FROM = "dateFrom"
         const val QUERY_DATE_TO = "dateTo"
+        const val QUERY_STATUS = "status"
+        const val QUERY_LIMIT = "limit"
 
         //Room Database
         const val DATABASE_NAME = "top_leagues_database"

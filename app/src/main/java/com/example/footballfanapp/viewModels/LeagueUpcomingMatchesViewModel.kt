@@ -2,6 +2,7 @@ package com.example.footballfanapp.viewModels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import com.example.footballfanapp.util.Constants.Companion.QUERY_STATUS
 
 class LeagueUpcomingMatchesViewModel(application: Application): AndroidViewModel(application) {
 
@@ -9,7 +10,7 @@ class LeagueUpcomingMatchesViewModel(application: Application): AndroidViewModel
 
     fun applyQueries(): HashMap<String, String> {
         val queries: HashMap<String, String> = HashMap()
-        queries["status"] = status
+        queries[QUERY_STATUS] = status
         return queries
     }
 

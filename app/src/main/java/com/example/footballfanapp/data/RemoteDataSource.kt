@@ -3,6 +3,7 @@ package com.example.footballfanapp.data
 import com.example.footballfanapp.data.network.TopLeaguesApi
 import com.example.footballfanapp.models.LeagueStanding
 import com.example.footballfanapp.models.TopLeaguesModel
+import com.example.footballfanapp.models.TopScorers
 import com.example.footballfanapp.models.UpcomingMatchesModel
 import retrofit2.Response
 import javax.inject.Inject
@@ -28,5 +29,12 @@ class RemoteDataSource @Inject constructor(
         queries: Map<String, String>
     ): Response<UpcomingMatchesModel> {
         return topLeaguesApi.getLeagueUpcomingMatches(leagueId, queries)
+    }
+
+    suspend fun getLeagueTopScorers(
+        leagueId: Int,
+        queries: Map<String, String>
+    ): Response<TopScorers> {
+        return topLeaguesApi.getLeagueTopScorers(leagueId, queries)
     }
 }

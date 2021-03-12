@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.footballfanapp.data.Repository
 import com.example.footballfanapp.models.LeagueStanding
+import com.example.footballfanapp.models.TopScorers
 import com.example.footballfanapp.models.UpcomingMatchesModel
 import com.example.footballfanapp.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -31,6 +32,9 @@ class LeagueStandingsViewModel @Inject constructor(
     var leagueUpcomingMatchesResponse: MutableLiveData<NetworkResult<UpcomingMatchesModel>> =
         MutableLiveData()
 
+    var leagueTopScorersResponse: MutableLiveData<NetworkResult<TopScorers>> =
+        MutableLiveData()
+
 
     fun getLeagueStanding(leagueId: Int) = viewModelScope.launch {
         getStandingSafeCall(leagueId)
@@ -41,10 +45,51 @@ class LeagueStandingsViewModel @Inject constructor(
             getLeagueUpcomingMatchesSafeCall(leagueId, queries)
         }
 
-    private suspend fun getLeagueUpcomingMatchesSafeCall(leagueId: Int, queries: Map<String, String>) {
+    fun getLeagueTopScorers(leagueId: Int, queries: Map<String, String>) = viewModelScope.launch {
+        getLeagueTopScorersSafeCall(leagueId, queries)
+    }
+
+    private suspend fun getLeagueTopScorersSafeCall(leagueId: Int, queries: Map<String, String>) {
         if (hasInternetConnection()) {
             try {
-                val response = repository.remote.getLeagueUpcomingMatches(leagueId,queries)
+                val response = repository.remote.getLeagueTopScorers(leagueId, queries)
+                leagueTopScorersResponse.value = handleLeagueTopScorersResponse(response)
+            } catch (e: Exception) {
+                leagueTopScorersResponse.value = NetworkResult.Error("Some kind of error")
+            }
+        } else {
+            leagueTopScorersResponse.value = NetworkResult.Error("No internet connection")
+        }
+    }
+
+    private fun handleLeagueTopScorersResponse(response: Response<TopScorers>): NetworkResult<TopScorers> {
+        when {
+            response.code() == 404 -> {
+                return NetworkResult.Error("You tried to access a resource that doesn't exist")
+            }
+            response.code() == 429 -> {
+                return NetworkResult.Error("You exceeded your API request quota")
+            }
+            response.body()!!.scorers.isNullOrEmpty() -> {
+                return NetworkResult.Error("League Table is Empty")
+            }
+            response.isSuccessful -> {
+                val leagueTopScorers = response.body()
+                return NetworkResult.Success(leagueTopScorers!!)
+            }
+            else -> {
+                return NetworkResult.Error(response.message())
+            }
+        }
+    }
+
+    private suspend fun getLeagueUpcomingMatchesSafeCall(
+        leagueId: Int,
+        queries: Map<String, String>
+    ) {
+        if (hasInternetConnection()) {
+            try {
+                val response = repository.remote.getLeagueUpcomingMatches(leagueId, queries)
                 leagueUpcomingMatchesResponse.value = handleLeagueUpcomingMatchesResponse(response)
             } catch (e: Exception) {
                 leagueUpcomingMatchesResponse.value = NetworkResult.Error("Some kind of error")

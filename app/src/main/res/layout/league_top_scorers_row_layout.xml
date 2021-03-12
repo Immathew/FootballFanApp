@@ -3,15 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="scorer"
+            type="com.example.footballfanapp.models.Scorer" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.fragments.leagueTopScorers.LeagueTopScorersFragment">
+        android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/leagueTopScorers_cardView"
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -24,17 +30,18 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/leagueTopScorers_ScorerPosition"
+                    android:id="@+id/scorerPosition"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:layout_margin="3dp"
                     android:gravity="center"
                     android:textSize="14sp"
-                    android:text="@string/sharp" />
+                    tools:text="5" />
 
                 <ImageView
-                    android:id="@+id/leagueTopScorers_ScorerClubIcon_imageView"
+                    android:id="@+id/ScorerClubIcon_imageView"
+                    loadClubImageFromUrl="@{scorer.team.id}"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
@@ -43,47 +50,40 @@
                     tools:srcCompat="@tools:sample/avatars" />
 
                 <TextView
-                    android:id="@+id/leagueTopScorers_player_name"
+                    android:id="@+id/scorer_name"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="3dp"
                     android:maxLines="2"
-                    android:text="@string/player_name"
+                    android:text="@{scorer.player.name}"
                     android:textSize="14sp"
-                    tools:text="Player Name" />
+                    tools:text="Pierre-Emerick Aubameyang" />
 
                 <TextView
-                    android:id="@+id/leagueTopScorers_goalsScored"
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/Scorer_goalsScored"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:layout_margin="3dp"
                     android:gravity="center"
-                    android:text="@string/goals"
-                    android:textSize="14sp" />
+                    android:text="@{String.valueOf(scorer.numberOfGoals)}"
+                    android:textSize="14sp"
+                    tools:text="5" />
 
                 <TextView
-                    android:id="@+id/leagueTopScorers_position"
+                    android:id="@+id/scorerPositionName"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="3dp"
                     android:maxLines="2"
-                    android:text="@string/position"
+                    android:text="@{scorer.player.position}"
                     android:textSize="14sp"
-                    tools:text="Position" />
+                    tools:text="Midfielder" />
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/leagueTopScorersRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@+id/leagueTopScorers_cardView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
