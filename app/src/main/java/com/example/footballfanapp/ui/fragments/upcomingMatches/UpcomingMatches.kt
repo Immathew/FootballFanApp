@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.footballfanapp.R
 import com.example.footballfanapp.viewModels.MainViewModel
 import com.example.footballfanapp.adapters.UpcomingMatchesAdapter
 import com.example.footballfanapp.databinding.FragmentUpcomingMatchesBinding
@@ -45,7 +46,6 @@ class UpcomingMatches : Fragment() {
 
         binding.upcomingMatchesRecyclerView.adapter = mAdapter
         binding.upcomingMatchesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-
 
         setChipsOnClickListeners()
         requestApiData()
@@ -103,17 +103,26 @@ class UpcomingMatches : Fragment() {
                     filteredMatches.let {
                         mAdapter.setData(it)
                     }
-                    binding.upcomingMatchesRecyclerView.visibility = View.VISIBLE
-                    binding.upcomingMatchesSadFaceImageView.visibility = View.INVISIBLE
-                    binding.upcomingMatchesErrorTextView.visibility = View.INVISIBLE
 
-                }
-                is NetworkResult.Error -> {
-                    if (response.message.toString() == "Our Top Leagues are not playing on this day :( ") {
+                    if (filteredMatches.matches.isEmpty()) {
                         binding.upcomingMatchesRecyclerView.visibility = View.INVISIBLE
                         binding.upcomingMatchesSadFaceImageView.visibility = View.VISIBLE
                         binding.upcomingMatchesErrorTextView.visibility = View.VISIBLE
-                        binding.upcomingMatchesErrorTextView.text = "Our Top Leagues are not playing on this day :( "
+                        binding.upcomingMatchesErrorTextView.text =
+                            getString(R.string.No_matches_today)
+                    } else {
+                        binding.upcomingMatchesRecyclerView.visibility = View.VISIBLE
+                        binding.upcomingMatchesSadFaceImageView.visibility = View.INVISIBLE
+                        binding.upcomingMatchesErrorTextView.visibility = View.INVISIBLE
+                    }
+                }
+                is NetworkResult.Error -> {
+                    if (response.message.toString() == "No matches today") {
+                        binding.upcomingMatchesRecyclerView.visibility = View.INVISIBLE
+                        binding.upcomingMatchesSadFaceImageView.visibility = View.VISIBLE
+                        binding.upcomingMatchesErrorTextView.visibility = View.VISIBLE
+                        binding.upcomingMatchesErrorTextView.text =
+                            getString(R.string.No_matches_today)
                     }
                     Toast.makeText(
                         requireContext(),

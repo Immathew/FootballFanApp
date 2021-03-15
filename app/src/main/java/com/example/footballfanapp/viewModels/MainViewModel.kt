@@ -71,10 +71,11 @@ class MainViewModel @Inject constructor(
                 return NetworkResult.Error("You exceeded your API request quota")
             }
             response.body()?.matches.isNullOrEmpty() -> {
-                return NetworkResult.Error("Our Top Leagues are not playing on this day :( ")
+                return NetworkResult.Error("No matches today")
             }
             response.isSuccessful -> {
                 val upcomingMatches = response.body()
+                Log.d("UpcomingMatchesLog", upcomingMatches.toString())
                 return NetworkResult.Success(upcomingMatches!!)
             }
             else -> {
@@ -82,7 +83,6 @@ class MainViewModel @Inject constructor(
             }
         }
     }
-
 
     private suspend fun getTopLeaguesSafeCall(queries: Map<String, String>) {
         if (hasInternetConnection()) {
