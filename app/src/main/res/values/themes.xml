@@ -27,6 +27,14 @@
         <item name="android:statusBarColor">@color/colorPrimaryDark</item>
     </style>
 
+    <style name="TeamDetailsActivityStyle" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+    </style>
+
     <style name="CustomTabLayoutStyle" parent="Widget.Design.TabLayout">
         <item name="background">@color/actionBarBackgroundColor</item>
         <item name="tabIndicatorColor">@color/white</item>

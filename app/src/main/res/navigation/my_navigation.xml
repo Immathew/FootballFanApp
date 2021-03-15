@@ -23,14 +23,27 @@
         android:id="@+id/myFavouriteTeam"
         android:name="com.example.footballfanapp.ui.fragments.myFavouriteTeam.MyFavouriteTeam"
         android:label="Favourite Team"
-        tools:layout="@layout/fragment_my_favourite_team" />
+        tools:layout="@layout/fragment_my_favourite_team" >
+        <action
+            android:id="@+id/action_myFavouriteTeam_to_teamDetailsActivity"
+            app:destination="@id/teamDetailsActivity" />
+    </fragment>
     <activity
         android:id="@+id/leagueStandingsActivity"
         android:name="com.example.footballfanapp.ui.LeagueStandingsActivity"
         android:label="activity_league_standings"
-        tools:layout="@layout/activity_league_standings" >
+        tools:layout="@layout/fragment_league_table" >
         <argument
             android:name="competition_Id"
+            app:argType="integer" />
+    </activity>
+    <activity
+        android:id="@+id/teamDetailsActivity"
+        android:name="com.example.footballfanapp.ui.TeamDetailsActivity"
+        android:label="TeamDetailsActivity"
+        tools:layout="@layout/activity_team_deteails">
+        <argument
+            android:name="teamId"
             app:argType="integer" />
     </activity>
 </navigation>

@@ -10,6 +10,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/leagueTableRowLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
@@ -44,6 +45,7 @@
                 <ImageView
                     android:id="@+id/clubIcon_imageView"
                     loadImageFromUrl="@{table.team.crestUrl}"
+                    android:contentDescription="@string/club_icon"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"

@@ -15,9 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FootballFanApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.LeagueStandingsActivity"
+        <activity android:name=".ui.TeamDetailsActivity"
+            android:label="Team Details"
+            android:theme="@style/TeamDetailsActivityStyle"/>
+        <activity
+            android:name=".ui.LeagueStandingsActivity"
             android:label="League Standing"
-            android:theme="@style/LeaguesStandingsActivityStyle"/>
+            android:theme="@style/LeaguesStandingsActivityStyle" />
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

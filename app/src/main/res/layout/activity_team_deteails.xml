@@ -4,45 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/leagueStandingsLayout"
+        android:id="@+id/teamDetailsActivityLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.LeagueStandingsActivity">
-
+        tools:context=".ui.TeamDetailsActivity">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBar"
+            android:id="@+id/teamDetailsAppBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
+                android:id="@+id/teamDetailsToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabLayout"
+                android:id="@+id/teamDetailsTabLayout"
                 style="@style/CustomTabLayoutStyle"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:tabTextAppearance="@style/CustomTabTextStyle" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewPager2"
+            android:id="@+id/teamDetailsViewPager2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBar" />
+            app:layout_constraintTop_toBottomOf="@id/teamDetailsAppBar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

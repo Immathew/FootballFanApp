@@ -4,8 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.footballfanapp.databinding.LeagueStandingsTableRowLayoutBinding
-import com.example.footballfanapp.models.LeagueStanding
+import com.example.footballfanapp.databinding.LeagueTableRowLayoutBinding
 import com.example.footballfanapp.models.Standing
 import com.example.footballfanapp.models.Table
 import com.example.footballfanapp.util.CalculateDiffUtil
@@ -14,7 +13,7 @@ class LeagueTableAdapter : RecyclerView.Adapter<LeagueTableAdapter.MyViewHolder>
 
     private var leaguesTable = emptyList<Table>()
 
-    class MyViewHolder(private val binding: LeagueStandingsTableRowLayoutBinding) :
+    class MyViewHolder(private val binding: LeagueTableRowLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(table: Table) {
@@ -26,7 +25,7 @@ class LeagueTableAdapter : RecyclerView.Adapter<LeagueTableAdapter.MyViewHolder>
             fun from(parent: ViewGroup): MyViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding =
-                    LeagueStandingsTableRowLayoutBinding.inflate(layoutInflater, parent, false)
+                    LeagueTableRowLayoutBinding.inflate(layoutInflater, parent, false)
                 return MyViewHolder(binding)
             }
         }

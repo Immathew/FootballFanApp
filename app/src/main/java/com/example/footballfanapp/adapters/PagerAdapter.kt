@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
 class PagerAdapter(
-    private var leagueBundle: Bundle,
+    private var fromBundle: Bundle,
     private var fragments: ArrayList<Fragment>,
     fragmentActivity: FragmentActivity
 ): FragmentStateAdapter(fragmentActivity) {
@@ -16,7 +16,7 @@ class PagerAdapter(
     }
 
     override fun createFragment(position: Int): Fragment {
-        fragments[position].arguments = leagueBundle
+        fragments[position].arguments = fromBundle
         return fragments[position]
     }
 }
