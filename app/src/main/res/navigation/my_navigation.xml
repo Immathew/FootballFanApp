@@ -29,15 +29,6 @@
             app:destination="@id/teamDetailsActivity" />
     </fragment>
     <activity
-        android:id="@+id/leagueStandingsActivity"
-        android:name="com.example.footballfanapp.ui.LeagueStandingsActivity"
-        android:label="activity_league_standings"
-        tools:layout="@layout/fragment_league_table" >
-        <argument
-            android:name="competition_Id"
-            app:argType="integer" />
-    </activity>
-    <activity
         android:id="@+id/teamDetailsActivity"
         android:name="com.example.footballfanapp.ui.TeamDetailsActivity"
         android:label="TeamDetailsActivity"
@@ -46,4 +37,14 @@
             android:name="teamId"
             app:argType="integer" />
     </activity>
+    <activity
+        android:id="@+id/leagueStandingsActivity"
+        android:name="com.example.footballfanapp.ui.LeagueStandingsActivity"
+        android:label="League Standings"
+        tools:layout="@layout/fragment_league_table">
+        <argument
+            android:name="competitionId"
+            app:argType="integer" />
+    </activity>
+
 </navigation>

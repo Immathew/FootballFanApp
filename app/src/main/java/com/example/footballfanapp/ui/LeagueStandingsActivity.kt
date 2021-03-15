@@ -3,15 +3,9 @@ package com.example.footballfanapp.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.navArgs
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.footballfanapp.R
 import com.example.footballfanapp.adapters.PagerAdapter
 import com.example.footballfanapp.databinding.ActivityLeagueStandingsBinding

@@ -29,6 +29,10 @@ class TeamDetailsActivity : AppCompatActivity() {
         binding = ActivityTeamDeteailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val intent = intent
+        val teamId = intent.getIntExtra("teamId", 0)
+
+
         setSupportActionBar(binding.teamDetailsToolbar)
         binding.teamDetailsToolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -44,7 +48,7 @@ class TeamDetailsActivity : AppCompatActivity() {
         titles.add("Website")
 
         val teamDetailsBundle = Bundle()
-//        teamDetailsBundle.putInt("teamId", args.teamId)
+        teamDetailsBundle.putInt("teamId", teamId)
 
         val pagerAdapter = PagerAdapter(
             teamDetailsBundle,
@@ -55,8 +59,6 @@ class TeamDetailsActivity : AppCompatActivity() {
         binding.teamDetailsViewPager2.apply {
             adapter = pagerAdapter
         }
-
-//        binding.teamDetailsViewPager2.adapter = pagerAdapter
 
         TabLayoutMediator(
             binding.teamDetailsTabLayout,
