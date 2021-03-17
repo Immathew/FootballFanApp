@@ -2,36 +2,43 @@ package com.example.footballfanapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
-import androidx.navigation.navArgs
 import com.example.footballfanapp.R
 import com.example.footballfanapp.adapters.PagerAdapter
 import com.example.footballfanapp.databinding.ActivityTeamDeteailsBinding
+import com.example.footballfanapp.models.TeamDetails
 import com.example.footballfanapp.ui.fragments.teamMatches.TeamMatchesFragment
 import com.example.footballfanapp.ui.fragments.teamSquad.TeamSquadFragment
 import com.example.footballfanapp.ui.fragments.teamWebsite.TeamWebsiteFragment
+import com.example.footballfanapp.util.NetworkResult
+import com.example.footballfanapp.viewModels.TeamDetailsViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class TeamDetailsActivity : AppCompatActivity() {
 
-
+    private val teamDetailsViewModel by viewModels<TeamDetailsViewModel> {defaultViewModelProviderFactory}
 
     private lateinit var binding: ActivityTeamDeteailsBinding
 
+    private  var teamDetails: TeamDetails? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityTeamDeteailsBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         val intent = intent
         val teamId = intent.getIntExtra("teamId", 0)
 
+        requestApiData(teamId)
+
+        binding = ActivityTeamDeteailsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         setSupportActionBar(binding.teamDetailsToolbar)
         binding.teamDetailsToolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white))
@@ -49,6 +56,7 @@ class TeamDetailsActivity : AppCompatActivity() {
 
         val teamDetailsBundle = Bundle()
         teamDetailsBundle.putInt("teamId", teamId)
+        teamDetailsBundle.putParcelable("teamDetails", teamDetails)
 
         val pagerAdapter = PagerAdapter(
             teamDetailsBundle,
@@ -66,6 +74,30 @@ class TeamDetailsActivity : AppCompatActivity() {
         ) { tab, position ->
             tab.text = titles[position]
         }.attach()
+
+    }
+
+    private fun requestApiData(teamId: Int) {
+        teamDetailsViewModel.getTeamDetails(teamId)
+
+        teamDetailsViewModel.teamDetailsResponse.observe(this, { response ->
+            when (response) {
+                is NetworkResult.Success -> {
+                    val teamDetailsResponse = response.data!!
+                    teamDetails = teamDetailsResponse
+                    Log.e("TeamDetailsActivity", teamDetails.toString())
+                    binding.teamDetails = teamDetailsResponse
+
+                }
+                is NetworkResult.Error -> {
+                    Toast.makeText(
+                        this,
+                        response.message.toString(),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

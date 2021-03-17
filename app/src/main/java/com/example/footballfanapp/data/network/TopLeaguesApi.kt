@@ -34,12 +34,12 @@ interface TopLeaguesApi {
         @QueryMap queries: Map<String, String>
     ): Response<TopScorers>
 
-    @GET("v2/team/{id}")
+    @GET("v2/teams/{id}")
     suspend fun getTeamDetails(
         @Path("id") teamId: Int
     ): Response<TeamDetails>
 
-    @GET("v2/team/{id}/matches")
+    @GET("v2/teams/{id}/matches")
     suspend fun getTeamUpcomingMatches(
         @Path("id") teamId: Int,
         @QueryMap queries: Map<String, String>
