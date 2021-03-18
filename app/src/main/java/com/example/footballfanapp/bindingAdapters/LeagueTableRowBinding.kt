@@ -20,10 +20,6 @@ class LeagueTableRowBinding {
         fun onTableRowClickListener(leagueTableRowLayout: ConstraintLayout, teamId: Int) {
             leagueTableRowLayout.setOnClickListener {
                 try {
-//                    val action =
-//                        LeagueTableFragmentDirections.actionLeagueTableFragmentToTeamDetailsActivity2(teamId)
-//                    leagueTableRowLayout.findNavController().navigate(action)
-
                     val intent = Intent(leagueTableRowLayout.context, TeamDetailsActivity::class.java).apply {
                         putExtra("teamId", teamId)
                     }

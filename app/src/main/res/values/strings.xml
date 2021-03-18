@@ -35,4 +35,7 @@
     <string name="No_matches_today">No matches today</string>
     <string name="club_icon">Club icon</string>
     <string name="stadium_icon">Stadium icon</string>
+    <string name="coach">Coach</string>
+    <string name="date_of_birth">Date of birth</string>
+    <string name="nationality">Nationality</string>
 </resources>

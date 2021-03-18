@@ -19,7 +19,7 @@ data class TeamDetails(
     @SerializedName("name")
     val name: String?,
     @SerializedName("squad")
-    val squad: @RawValue List<Player>?,
+    val squad: @RawValue List<Player>,
     @SerializedName("venue")
     val venue: String?,
     @SerializedName("website")

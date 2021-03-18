@@ -10,7 +10,7 @@ data class Player(
     @SerializedName("countryOfBirth")
     val countryOfBirth: String?,
     @SerializedName("dateOfBirth")
-    val dateOfBirth: String?,
+    val dateOfBirth: String,
     @SerializedName("name")
     val name: String?,
     @SerializedName("nationality")
