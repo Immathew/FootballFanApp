@@ -20,6 +20,7 @@ class Constants {
         //Room Database
         const val DATABASE_NAME = "top_leagues_database"
         const val TOP_LEAGUES_TABLE = "top_leagues_table"
+        const val FAVORITE_TEAM_TABLE = "favorite_team_table"
 
     }
 }

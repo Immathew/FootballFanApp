@@ -38,4 +38,7 @@
     <string name="coach">Coach</string>
     <string name="date_of_birth">Date of birth</string>
     <string name="nationality">Nationality</string>
+    <string name="save_to_favorites">Save to favorites</string>
+    <string name="team_added_to_favorites">Team added to favorites</string>
+    <string name="team_removed_from_favorites">Team removed from favorites</string>
 </resources>

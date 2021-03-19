@@ -2,7 +2,9 @@ package com.example.footballfanapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Message
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -12,29 +14,34 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.footballfanapp.R
 import com.example.footballfanapp.adapters.PagerAdapter
+import com.example.footballfanapp.data.database.entities.FavoriteTeamEntity
 import com.example.footballfanapp.databinding.ActivityTeamDeteailsBinding
-import com.example.footballfanapp.models.TeamDetails
 import com.example.footballfanapp.ui.fragments.teamMatches.TeamMatchesFragment
 import com.example.footballfanapp.ui.fragments.teamSquad.TeamSquadFragment
 import com.example.footballfanapp.ui.fragments.teamWebsite.TeamWebsiteFragment
 import com.example.footballfanapp.util.NetworkResult
 import com.example.footballfanapp.viewModels.TeamDetailsViewModel
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class TeamDetailsActivity : AppCompatActivity() {
 
-    private val teamDetailsViewModel by viewModels<TeamDetailsViewModel> {defaultViewModelProviderFactory}
+    private val teamDetailsViewModel: TeamDetailsViewModel by viewModels()
 
     private lateinit var binding: ActivityTeamDeteailsBinding
 
+    private var teamId = 0
+    private var teamSavedToFavorites = false
+    private var savedTeamId = 0
+    private lateinit var menuItem: MenuItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val intent = intent
-        val teamId = intent.getIntExtra("teamId", 0)
+        teamId = intent.getIntExtra("teamId", 0)
         Log.e("TEAM_ID", teamId.toString())
 
         requestApiData(teamId)
@@ -87,9 +94,7 @@ class TeamDetailsActivity : AppCompatActivity() {
             when (response) {
                 is NetworkResult.Success -> {
                     val teamDetailsResponse = response.data!!
-
                     binding.teamDetails = teamDetailsResponse
-
                 }
                 is NetworkResult.Error -> {
                     Toast.makeText(
@@ -102,11 +107,73 @@ class TeamDetailsActivity : AppCompatActivity() {
         })
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.team_details_menu, menu)
+        menuItem = menu!!.findItem(R.id.saveToFavorites_menu)
+        checkSavedFavoriteTeam(menuItem)
+        return true
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
             finish()
+        } else if (item.itemId == R.id.saveToFavorites_menu) {
+            if (teamSavedToFavorites) {
+                removeFavoriteTeam(item)
+            } else {
+                saveToFavorites(item)
+            }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun saveToFavorites(item: MenuItem) {
+        val favoriteTeamEntity =
+            FavoriteTeamEntity(
+                0,
+                teamId
+            )
+        teamDetailsViewModel.insertFavoriteTeam(favoriteTeamEntity)
+        changeMenuItemColor(item, R.color.yellow)
+        showSnackBar(getString(R.string.team_added_to_favorites))
+        teamSavedToFavorites = true
+    }
+
+    private fun removeFavoriteTeam(item: MenuItem) {
+        val favoriteTeamEntity =
+            FavoriteTeamEntity(
+                savedTeamId,
+                teamId
+            )
+        teamDetailsViewModel.deleteFavoriteTeam(favoriteTeamEntity)
+        changeMenuItemColor(item, R.color.white)
+        showSnackBar(getString(R.string.team_removed_from_favorites))
+        teamSavedToFavorites = false
+    }
+
+    private fun showSnackBar(message: String) {
+        Snackbar.make(
+            binding.teamDetailsActivityLayout,
+            message,
+            Snackbar.LENGTH_SHORT
+        ).setAction("Ok") {}
+            .show()
+    }
+
+    private fun changeMenuItemColor(item: MenuItem, color: Int) {
+        item.icon.setTint(ContextCompat.getColor(this, color))
+    }
+
+    private fun checkSavedFavoriteTeam(item: MenuItem) {
+        teamDetailsViewModel.readFavoriteTeamEntity.observe(this, { favoriteTeamEntity ->
+            for (savedTeam in favoriteTeamEntity) {
+                if (savedTeam.teamId == teamId) {
+                    changeMenuItemColor(item, R.color.yellow)
+                    savedTeamId = savedTeam.id
+                    teamSavedToFavorites = true
+                }
+            }
+        })
     }
 
     private fun ViewPager2.reduceDragSensitivity() {
@@ -117,6 +184,11 @@ class TeamDetailsActivity : AppCompatActivity() {
         val touchSlopField = RecyclerView::class.java.getDeclaredField("mTouchSlop")
         touchSlopField.isAccessible = true
         val touchSlop = touchSlopField.get(recyclerView) as Int
-        touchSlopField.set(recyclerView, touchSlop*6)       // "8" was obtained experimentally
+        touchSlopField.set(recyclerView, touchSlop * 6)       // "8" was obtained experimentally
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        changeMenuItemColor(menuItem, R.color.white)
     }
 }

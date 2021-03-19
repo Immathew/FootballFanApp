@@ -1,9 +1,8 @@
 package com.example.footballfanapp.data.database
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
+import com.example.footballfanapp.data.database.entities.FavoriteTeamEntity
+import com.example.footballfanapp.data.database.entities.TopLeaguesEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -15,4 +14,12 @@ interface TopLeaguesDao {
     @Query("SELECT * FROM top_leagues_table")
     fun readTopLeagues(): Flow<List<TopLeaguesEntity>>
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertFavoriteTeam(favoriteTeamEntity: FavoriteTeamEntity)
+
+    @Query("SELECT * FROM favorite_team_table")
+    fun readFavoriteTeam(): Flow<List<FavoriteTeamEntity>>
+
+    @Delete
+    suspend fun deleteFavoriteTeam(favoriteTeamEntity: FavoriteTeamEntity)
 }

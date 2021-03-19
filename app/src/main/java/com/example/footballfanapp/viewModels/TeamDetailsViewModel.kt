@@ -5,14 +5,14 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.footballfanapp.data.Repository
+import com.example.footballfanapp.data.database.entities.FavoriteTeamEntity
 import com.example.footballfanapp.models.TeamDetails
 import com.example.footballfanapp.models.UpcomingMatchesModel
 import com.example.footballfanapp.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import java.lang.Exception
@@ -23,6 +23,19 @@ class TeamDetailsViewModel @Inject constructor(
     private val repository: Repository,
     application: Application
 ) : AndroidViewModel(application) {
+
+    /**Room Database*/
+
+    val readFavoriteTeamEntity: LiveData<List<FavoriteTeamEntity>> =
+        repository.local.readFavoriteTeam().asLiveData()
+
+    fun insertFavoriteTeam(favoriteTeamEntity: FavoriteTeamEntity) = viewModelScope.launch(Dispatchers.IO) {
+        repository.local.insertFavoriteTeam(favoriteTeamEntity)
+    }
+
+    fun deleteFavoriteTeam(favoriteTeamEntity: FavoriteTeamEntity) = viewModelScope.launch(Dispatchers.IO) {
+        repository.local.deleteFavoritesTeam(favoriteTeamEntity)
+    }
 
     /**Retrofit*/
 

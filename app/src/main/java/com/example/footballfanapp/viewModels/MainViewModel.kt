@@ -7,7 +7,7 @@ import android.net.NetworkCapabilities
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.footballfanapp.data.Repository
-import com.example.footballfanapp.data.database.TopLeaguesEntity
+import com.example.footballfanapp.data.database.entities.TopLeaguesEntity
 import com.example.footballfanapp.models.TopLeaguesModel
 import com.example.footballfanapp.models.UpcomingMatchesModel
 import com.example.footballfanapp.util.NetworkResult
@@ -27,7 +27,7 @@ class MainViewModel @Inject constructor(
     /** ROOM DATABASE*/
 
     var readTopLeagues: LiveData<List<TopLeaguesEntity>> =
-        repository.local.readDatabase().asLiveData()
+        repository.local.readTopLeagues().asLiveData()
 
     private fun insertTopLeagues(topLeaguesEntity: TopLeaguesEntity) =
         viewModelScope.launch(Dispatchers.IO) {

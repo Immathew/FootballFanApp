@@ -66,8 +66,8 @@
                     android:id="@+id/colon_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/colon"
                     android:layout_margin="2dp"
+                    android:text="@string/colon"
                     android:textSize="18sp"
                     android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -117,6 +117,7 @@
 
                 <TextView
                     android:id="@+id/homeTeam_name_textView"
+                    onTeamNameClickListener="@{match.homeTeam.id}"
                     android:layout_width="120dp"
                     android:layout_height="30dp"
                     android:layout_margin="4dp"
@@ -134,6 +135,7 @@
 
                 <TextView
                     android:id="@+id/awayTeam_name_textView"
+                    onTeamNameClickListener="@{match.awayTeam.id}"
                     android:layout_width="120dp"
                     android:layout_height="30dp"
                     android:layout_margin="4dp"

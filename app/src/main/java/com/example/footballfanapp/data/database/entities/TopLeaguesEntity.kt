@@ -1,4 +1,4 @@
-package com.example.footballfanapp.data.database
+package com.example.footballfanapp.data.database.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -1,7 +1,8 @@
 package com.example.footballfanapp.data
 
 import com.example.footballfanapp.data.database.TopLeaguesDao
-import com.example.footballfanapp.data.database.TopLeaguesEntity
+import com.example.footballfanapp.data.database.entities.FavoriteTeamEntity
+import com.example.footballfanapp.data.database.entities.TopLeaguesEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -13,7 +14,19 @@ class LocalDataSource @Inject constructor(
         topLeaguesDao.insertTopLeagues(topLeaguesEntity)
     }
 
-    fun readDatabase(): Flow<List<TopLeaguesEntity>> {
+    fun readTopLeagues(): Flow<List<TopLeaguesEntity>> {
         return topLeaguesDao.readTopLeagues()
+    }
+
+    suspend fun insertFavoriteTeam(favoriteTeamEntity: FavoriteTeamEntity) {
+        topLeaguesDao.insertFavoriteTeam(favoriteTeamEntity)
+    }
+
+    fun readFavoriteTeam(): Flow<List<FavoriteTeamEntity>> {
+        return topLeaguesDao.readFavoriteTeam()
+    }
+
+    suspend fun deleteFavoritesTeam(favoriteTeamEntity: FavoriteTeamEntity) {
+        topLeaguesDao.deleteFavoriteTeam(favoriteTeamEntity)
     }
 }
