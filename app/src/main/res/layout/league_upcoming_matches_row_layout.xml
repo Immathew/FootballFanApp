@@ -31,7 +31,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="PREMIER LEAGUE" />
+            tools:text="Sat March 19" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/leagueUpcomingMatches_row_cardView"

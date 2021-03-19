@@ -5,19 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.footballfanapp.R
 import com.example.footballfanapp.adapters.LeagueTopScorersAdapter
 import com.example.footballfanapp.databinding.FragmentLeagueTopScorersBinding
-import com.example.footballfanapp.util.Constants
 import com.example.footballfanapp.util.Constants.Companion.QUERY_LIMIT
 import com.example.footballfanapp.util.NetworkResult
 import com.example.footballfanapp.viewModels.LeagueStandingsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class LeagueTopScorersFragment : Fragment() {
 
     private lateinit var leagueStandingsViewModel: LeagueStandingsViewModel

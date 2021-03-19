@@ -22,7 +22,8 @@ class UpcomingMatchesViewModel(application: Application) : AndroidViewModel(appl
 
         val filter = upcomingMatches.data!!.matches.filterNot {
             it.competition.name == "Série A" || it.competition.name == "UEFA Champions League" || it.competition.name == "Europe"
-                    || it.competition.name == "FIFA World Cup" || it.competition.name == "Championship"
+                    || it.competition.name == "FIFA World Cup" || it.competition.name == "Championship" || it.status == "POSTPONED"
+                    || it.status == "CANCELED"
         }.sortedBy {
             it.competition.area?.name
         }
@@ -46,7 +47,7 @@ class UpcomingMatchesViewModel(application: Application) : AndroidViewModel(appl
     @SuppressLint("SimpleDateFormat")
     fun setDayAfterTomorrowTwoDate() {
         val date = Calendar.getInstance()
-        date.add(Calendar.DAY_OF_MONTH,3)
+        date.add(Calendar.DAY_OF_MONTH, 3)
         val dateToQuery = SimpleDateFormat("yyyy-MM-dd").format(date.time)
 
         dateFrom = dateToQuery
@@ -56,7 +57,7 @@ class UpcomingMatchesViewModel(application: Application) : AndroidViewModel(appl
     @SuppressLint("SimpleDateFormat")
     fun setDayAfterTomorrowDate() {
         val date = Calendar.getInstance()
-        date.add(Calendar.DAY_OF_MONTH,2)
+        date.add(Calendar.DAY_OF_MONTH, 2)
         val dateToQuery = SimpleDateFormat("yyyy-MM-dd").format(date.time)
 
         dateFrom = dateToQuery
@@ -66,7 +67,7 @@ class UpcomingMatchesViewModel(application: Application) : AndroidViewModel(appl
     @SuppressLint("SimpleDateFormat")
     fun setTomorrowDate() {
         val date = Calendar.getInstance()
-        date.add(Calendar.DAY_OF_MONTH,1)
+        date.add(Calendar.DAY_OF_MONTH, 1)
         val dateToQuery = SimpleDateFormat("yyyy-MM-dd").format(date.time)
 
         dateFrom = dateToQuery
@@ -76,7 +77,7 @@ class UpcomingMatchesViewModel(application: Application) : AndroidViewModel(appl
     @SuppressLint("SimpleDateFormat")
     fun setYesterdayDate() {
         val date = Calendar.getInstance()
-        date.add(Calendar.DAY_OF_MONTH,-1)
+        date.add(Calendar.DAY_OF_MONTH, -1)
         val dateToQuery = SimpleDateFormat("yyyy-MM-dd").format(date.time)
 
         dateFrom = dateToQuery
@@ -86,7 +87,7 @@ class UpcomingMatchesViewModel(application: Application) : AndroidViewModel(appl
     @SuppressLint("SimpleDateFormat")
     fun setDayBeforeYesterdayDate() {
         val date = Calendar.getInstance()
-        date.add(Calendar.DAY_OF_MONTH,-2)
+        date.add(Calendar.DAY_OF_MONTH, -2)
         val dateToQuery = SimpleDateFormat("yyyy-MM-dd").format(date.time)
 
         dateFrom = dateToQuery
@@ -96,7 +97,7 @@ class UpcomingMatchesViewModel(application: Application) : AndroidViewModel(appl
     @SuppressLint("SimpleDateFormat")
     fun setDayBeforeYesterdayTwoDate() {
         val date = Calendar.getInstance()
-        date.add(Calendar.DAY_OF_MONTH,-3)
+        date.add(Calendar.DAY_OF_MONTH, -3)
         val dateToQuery = SimpleDateFormat("yyyy-MM-dd").format(date.time)
 
         dateFrom = dateToQuery

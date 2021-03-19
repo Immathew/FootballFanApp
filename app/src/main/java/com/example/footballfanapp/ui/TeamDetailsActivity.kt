@@ -29,13 +29,13 @@ class TeamDetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTeamDeteailsBinding
 
-    private  var teamDetails: TeamDetails? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val intent = intent
         val teamId = intent.getIntExtra("teamId", 0)
+        Log.e("TEAM_ID", teamId.toString())
 
         requestApiData(teamId)
 
@@ -58,7 +58,6 @@ class TeamDetailsActivity : AppCompatActivity() {
 
         val teamDetailsBundle = Bundle()
         teamDetailsBundle.putInt("teamId", teamId)
-        teamDetailsBundle.putParcelable("teamDetails", teamDetails)
 
         val pagerAdapter = PagerAdapter(
             teamDetailsBundle,
@@ -88,8 +87,7 @@ class TeamDetailsActivity : AppCompatActivity() {
             when (response) {
                 is NetworkResult.Success -> {
                     val teamDetailsResponse = response.data!!
-                    teamDetails = teamDetailsResponse
-                    Log.e("TeamDetailsActivity", teamDetails.toString())
+
                     binding.teamDetails = teamDetailsResponse
 
                 }
@@ -111,7 +109,7 @@ class TeamDetailsActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    fun ViewPager2.reduceDragSensitivity() {
+    private fun ViewPager2.reduceDragSensitivity() {
         val recyclerViewField = ViewPager2::class.java.getDeclaredField("mRecyclerView")
         recyclerViewField.isAccessible = true
         val recyclerView = recyclerViewField.get(this) as RecyclerView

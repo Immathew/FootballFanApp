@@ -14,8 +14,9 @@ import com.example.footballfanapp.models.UpcomingMatchesModel
 import com.example.footballfanapp.util.NetworkResult
 import com.example.footballfanapp.viewModels.LeagueStandingsViewModel
 import com.example.footballfanapp.viewModels.LeagueUpcomingMatchesViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class LeagueUpcomingMatchesFragment : Fragment() {
 
     private lateinit var leagueStandingsViewModel: LeagueStandingsViewModel

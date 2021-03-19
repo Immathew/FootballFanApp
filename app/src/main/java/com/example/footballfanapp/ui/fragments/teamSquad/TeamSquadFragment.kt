@@ -15,7 +15,9 @@ import com.example.footballfanapp.databinding.FragmentTeamSquadBinding
 import com.example.footballfanapp.models.TeamDetails
 import com.example.footballfanapp.util.NetworkResult
 import com.example.footballfanapp.viewModels.TeamDetailsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TeamSquadFragment : Fragment() {
 
     private lateinit var teamDetailsViewModel: TeamDetailsViewModel

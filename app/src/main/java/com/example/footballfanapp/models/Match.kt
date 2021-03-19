@@ -14,6 +14,8 @@ data class Match(
     val id: Int?,
     @SerializedName("score")
     val score: Score?,
+    @SerializedName("status")
+    val status: String,
     @SerializedName("utcDate")
     val utcDate: String?
 )

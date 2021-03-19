@@ -12,7 +12,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.footballfanapp.databinding.FragmentTeamWebsiteBinding
 import com.example.footballfanapp.util.NetworkResult
 import com.example.footballfanapp.viewModels.TeamDetailsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TeamWebsiteFragment : Fragment() {
 
     private lateinit var teamDetailsViewModel: TeamDetailsViewModel
@@ -45,7 +47,6 @@ class TeamWebsiteFragment : Fragment() {
             when (response) {
                 is NetworkResult.Success -> {
                     val websiteUrl = response.data!!.website.toString()
-
                     binding.teamDetailsWebView.loadUrl(websiteUrl)
                 }
                 is NetworkResult.Error -> {
@@ -58,6 +59,7 @@ class TeamWebsiteFragment : Fragment() {
             }
         })
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
