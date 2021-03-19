@@ -76,7 +76,9 @@ class TeamMatchesFragment : Fragment() {
             { response ->
                 when (response) {
                     is NetworkResult.Success -> {
-                        val sort = response.data!!.matches.sortedByDescending {
+                        val filter = teamMatchesViewModel.removeUnwantedLeagues(response)
+
+                        val sort = filter.matches.sortedByDescending {
                             it.utcDate
                         }
 
@@ -108,7 +110,9 @@ class TeamMatchesFragment : Fragment() {
              { response ->
                 when (response) {
                     is NetworkResult.Success -> {
-                        response.data!!.let {
+                        val filter = teamMatchesViewModel.removeUnwantedLeagues(response)
+
+                        filter.let {
                             mAdapter.setData(it)
                         }
 
