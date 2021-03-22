@@ -41,4 +41,5 @@
     <string name="save_to_favorites">Save to favorites</string>
     <string name="team_added_to_favorites">Team added to favorites</string>
     <string name="team_removed_from_favorites">Team removed from favorites</string>
+    <string name="no_favorite_teams_yet">No favorite teams yet.</string>
 </resources>

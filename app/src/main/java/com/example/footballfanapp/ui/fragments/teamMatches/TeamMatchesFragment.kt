@@ -39,7 +39,7 @@ class TeamMatchesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        // We are reusing layout and adapter which we already created in LeagueUpcomingMatches
+        // Reusing layout and adapter which we already created in LeagueUpcomingMatches
 
         _binding = FragmentLeagueUpcomingMatchesBinding.inflate(layoutInflater, container, false)
 

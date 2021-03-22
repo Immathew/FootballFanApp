@@ -2,7 +2,6 @@ package com.example.footballfanapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Message
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -10,6 +9,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.footballfanapp.R
@@ -29,6 +29,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class TeamDetailsActivity : AppCompatActivity() {
 
     private val teamDetailsViewModel: TeamDetailsViewModel by viewModels()
+    private val args by navArgs<TeamDetailsActivityArgs>()
 
     private lateinit var binding: ActivityTeamDeteailsBinding
 
@@ -41,7 +42,9 @@ class TeamDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val intent = intent
-        teamId = intent.getIntExtra("teamId", 0)
+
+        teamId = intent.getIntExtra("teamId", args.teamId)
+
         Log.e("TEAM_ID", teamId.toString())
 
         requestApiData(teamId)
@@ -84,10 +87,11 @@ class TeamDetailsActivity : AppCompatActivity() {
         }.attach()
 
         binding.teamDetailsViewPager2.reduceDragSensitivity()
-
     }
 
-    private fun requestApiData(teamId: Int) {
+
+    private fun requestApiData(teamId: Int ) {
+
         teamDetailsViewModel.getTeamDetails(teamId)
 
         teamDetailsViewModel.teamDetailsResponse.observe(this, { response ->
@@ -184,7 +188,7 @@ class TeamDetailsActivity : AppCompatActivity() {
         val touchSlopField = RecyclerView::class.java.getDeclaredField("mTouchSlop")
         touchSlopField.isAccessible = true
         val touchSlop = touchSlopField.get(recyclerView) as Int
-        touchSlopField.set(recyclerView, touchSlop * 6)       // "8" was obtained experimentally
+        touchSlopField.set(recyclerView, touchSlop * 6)
     }
 
     override fun onDestroy() {
