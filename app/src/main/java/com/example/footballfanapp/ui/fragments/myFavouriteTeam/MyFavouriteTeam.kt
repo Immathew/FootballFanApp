@@ -19,7 +19,7 @@ import com.example.footballfanapp.viewModels.TeamDetailsViewModel
 class MyFavouriteTeam : Fragment() {
 
     private lateinit var teamDetailsViewModel: TeamDetailsViewModel
-    private val mAdapter by lazy { MyFavoriteTeamAdapter() }
+    private val mAdapter by lazy { MyFavoriteTeamAdapter(requireActivity(), teamDetailsViewModel) }
     private var _binding: FragmentMyFavouriteTeamBinding? = null
     private val binding get() = _binding!!
 
@@ -32,8 +32,9 @@ class MyFavouriteTeam : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMyFavouriteTeamBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentMyFavouriteTeamBinding.inflate(inflater, container, false)
 
+        binding.lifecycleOwner = this
         binding.myFavouriteTeamRecyclerView.adapter = mAdapter
         binding.myFavouriteTeamRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
 
@@ -43,10 +44,9 @@ class MyFavouriteTeam : Fragment() {
     }
 
     private fun readFavoriteTeamsFromDatabase() {
-        teamDetailsViewModel.readFavoriteTeamEntity.observe(viewLifecycleOwner, { database ->
-
-            if(database.isNotEmpty()) {
-                database.let {
+        teamDetailsViewModel.readFavoriteTeamEntity.observe(viewLifecycleOwner, { favoriteTeamEntity ->
+            if(favoriteTeamEntity.isNotEmpty()) {
+                favoriteTeamEntity.let {
                     mAdapter.setData(it)
                 }
                 binding.noFavoriteTeamsYetTextView.visibility = View.INVISIBLE

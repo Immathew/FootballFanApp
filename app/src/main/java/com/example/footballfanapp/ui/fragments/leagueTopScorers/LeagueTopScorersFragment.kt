@@ -36,6 +36,7 @@ class LeagueTopScorersFragment : Fragment() {
     ): View {
         _binding = FragmentLeagueTopScorersBinding.inflate(inflater, container, false)
 
+        binding.lifecycleOwner = this
         binding.leagueTopScorersRecyclerView.adapter = mAdapter
         binding.leagueTopScorersRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 

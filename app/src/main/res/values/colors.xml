@@ -24,5 +24,12 @@
     <color name="chipBackgroundColor">@color/white</color>
     <color name="chipTextColor">@color/darkGray</color>
 
+    <color name="cardBackgroundColor">@color/white</color>
+    <color name="cardBackgroundColorLight">#156200EA</color>
+
+    <color name="strokeColor">@color/darkGray</color>
+
+
+
     <color name="actionBarBackgroundColor">@color/colorPrimary</color>
 </resources>

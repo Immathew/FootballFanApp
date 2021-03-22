@@ -38,6 +38,7 @@ class LeagueTableFragment : Fragment() {
     ): View {
         _binding = FragmentLeagueTableBinding.inflate(inflater, container, false)
 
+        binding.lifecycleOwner = this
         binding.leagueTableRecyclerView.adapter = mAdapter
         binding.leagueTableRecyclerView.layoutManager =
             LinearLayoutManager(requireContext())

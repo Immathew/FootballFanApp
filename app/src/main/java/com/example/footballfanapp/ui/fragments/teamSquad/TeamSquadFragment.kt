@@ -38,6 +38,7 @@ class TeamSquadFragment : Fragment() {
     ): View {
         _binding = FragmentTeamSquadBinding.inflate(inflater, container, false)
 
+        binding.lifecycleOwner = this
         binding.teamSquadRecyclerView.adapter = mAdapter
         binding.teamSquadRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 

@@ -42,6 +42,7 @@ class TopLeagues : Fragment() {
     ): View {
         _binding = FragmentTopLeaguesBinding.inflate(inflater, container, false)
 
+
         binding.topLeaguesRecyclerView.adapter = mAdapter
         binding.topLeaguesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
@@ -86,7 +87,6 @@ class TopLeagues : Fragment() {
             }
         })
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

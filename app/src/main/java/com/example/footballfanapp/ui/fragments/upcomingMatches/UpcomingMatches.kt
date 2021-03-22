@@ -44,6 +44,7 @@ class UpcomingMatches : Fragment() {
     ): View {
         _binding = FragmentUpcomingMatchesBinding.inflate(inflater, container, false)
 
+        binding.lifecycleOwner = this
         binding.upcomingMatchesRecyclerView.adapter = mAdapter
         binding.upcomingMatchesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 

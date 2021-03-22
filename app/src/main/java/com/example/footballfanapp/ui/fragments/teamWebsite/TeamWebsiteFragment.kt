@@ -1,5 +1,6 @@
 package com.example.footballfanapp.ui.fragments.teamWebsite
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -27,14 +28,18 @@ class TeamWebsiteFragment : Fragment() {
             ViewModelProvider(requireActivity()).get(TeamDetailsViewModel::class.java)
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentTeamWebsiteBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentTeamWebsiteBinding.inflate(inflater, container, false)
 
+        binding.lifecycleOwner = this
         binding.teamDetailsWebView.webViewClient = object : WebViewClient() {}
         binding.teamDetailsWebView.settings.javaScriptEnabled = true
+        binding.teamDetailsWebView.settings.domStorageEnabled = true
+
 
         setApiData()
 

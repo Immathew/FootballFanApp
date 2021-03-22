@@ -40,6 +40,7 @@ class LeagueUpcomingMatchesFragment : Fragment() {
     ): View {
         _binding = FragmentLeagueUpcomingMatchesBinding.inflate(inflater, container, false)
 
+        binding.lifecycleOwner = this
         binding.leagueUpcomingMatchesRecyclerView.adapter = mAdapter
         binding.leagueUpcomingMatchesRecyclerView.layoutManager =
             LinearLayoutManager(requireContext())

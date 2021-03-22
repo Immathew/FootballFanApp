@@ -41,11 +41,12 @@ class TeamMatchesFragment : Fragment() {
 
         // Reusing layout and adapter which we already created in LeagueUpcomingMatches
 
-        _binding = FragmentLeagueUpcomingMatchesBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentLeagueUpcomingMatchesBinding.inflate(inflater, container, false)
 
         val args = arguments
         val teamIdFromBundle = args!!.getInt("teamId")
 
+        binding.lifecycleOwner = this
         binding.leagueUpcomingMatchesRecyclerView.adapter = mAdapter
         binding.leagueUpcomingMatchesRecyclerView.layoutManager =
             LinearLayoutManager(requireContext())
