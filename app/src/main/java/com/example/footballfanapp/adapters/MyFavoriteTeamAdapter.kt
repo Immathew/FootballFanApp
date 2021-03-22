@@ -83,18 +83,20 @@ class MyFavoriteTeamAdapter(
                     requireActivity.startActionMode(this)
                     applySelection(holder, currentFavoriteTeam)
                     true
+                } else if (selectedTeams.size > 0) {
+                    multiSelection = true
+                    true
                 } else {
                     multiSelection = false
                     false
                 }
-
             }
     }
 
     private fun applySelection(holder: MyViewHolder, currentTeam: FavoriteTeamEntity) {
         if (selectedTeams.contains(currentTeam)) {
             selectedTeams.remove(currentTeam)
-            changeTeamStyle(holder, R.color.cardBackgroundColor, R.color.strokeColor)
+            changeTeamStyle(holder, R.color.cardBackgroundColor, R.color.cardBackgroundColor)
             applyActionModeTitle()
         } else {
             selectedTeams.add(currentTeam)
@@ -169,6 +171,12 @@ class MyFavoriteTeamAdapter(
             Snackbar.LENGTH_SHORT
         ).setAction("Ok") {}
             .show()
+    }
+
+    fun clearContextualActionMode() {
+        if (this::mActionMode.isInitialized) {
+            mActionMode.finish()
+        }
     }
 
 }
