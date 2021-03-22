@@ -79,7 +79,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
                         android:layout_marginTop="3dp"
-                        android:text="Founded:"
+                        android:text="@string/founded"
                         app:layout_constraintStart_toStartOf="@+id/teamDetailsName_tv"
                         app:layout_constraintTop_toBottomOf="@+id/teamDetailsName_tv" />
 
@@ -97,7 +97,7 @@
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_marginStart="10dp"
-                        android:gravity="center|left"
+                        android:gravity="center|start"
                         android:text="@{teamDetails.venue}"
                         app:layout_constraintBottom_toBottomOf="@+id/stadiumIcon_iv"
                         app:layout_constraintEnd_toEndOf="parent"

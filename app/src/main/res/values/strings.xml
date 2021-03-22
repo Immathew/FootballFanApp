@@ -43,4 +43,5 @@
     <string name="team_removed_from_favorites">Team removed from favorites</string>
     <string name="no_favorite_teams_yet">No favorite teams yet.</string>
     <string name="delete_favorite_team">Delete favorite team</string>
+    <string name="founded">Founded:</string>
 </resources>

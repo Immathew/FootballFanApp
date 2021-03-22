@@ -49,17 +49,32 @@ class UpcomingMatches : Fragment() {
         binding.upcomingMatchesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         setChipsOnClickListeners()
-        requestApiData()
         setDatesInChips()
+        requestApiData()
+        highlightProperChip()
 
-        binding.upcomingMatchesHorizontalSV.post(Runnable {
+        binding.upcomingMatchesChipGroup.setOnCheckedChangeListener { group, chipId ->
+            upcomingMatchesViewModel.selectedChip = chipId
+        }
+
+
+        binding.upcomingMatchesHorizontalSV.post {
             binding.upcomingMatchesHorizontalSV.scrollTo(
                 220,
                 0
             )
-        })
+        }
 
         return binding.root
+    }
+
+    private fun highlightProperChip() {
+        if (upcomingMatchesViewModel.selectedChip == 0) {
+            binding.todayChip.isChecked = true
+        } else {
+            binding.upcomingMatchesChipGroup.check(upcomingMatchesViewModel.selectedChip)
+        }
+
     }
 
     private fun setChipsOnClickListeners() {
@@ -94,7 +109,6 @@ class UpcomingMatches : Fragment() {
     }
 
     private fun requestApiData() {
-
         mainViewModel.getUpcomingMatches(upcomingMatchesViewModel.applyQuery())
         mainViewModel.upcomingMatchesResponse.observe(viewLifecycleOwner, { response ->
             when (response) {
@@ -135,11 +149,6 @@ class UpcomingMatches : Fragment() {
         })
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
     @SuppressLint("SimpleDateFormat")
     private fun setDatesInChips() {
         val dateToday = Calendar.getInstance()
@@ -159,6 +168,11 @@ class UpcomingMatches : Fragment() {
         dateToday.add(Calendar.DAY_OF_MONTH, 1)
         val dayAfterTomorrowTwo = SimpleDateFormat("dd-MM").format(dateToday.time)
         binding.dayAfterTomorrowTwoChip.text = dayAfterTomorrowTwo
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
 

@@ -84,7 +84,6 @@ class MyFavoriteTeamAdapter(
                     applySelection(holder, currentFavoriteTeam)
                     true
                 } else if (selectedTeams.size > 0) {
-                    multiSelection = true
                     true
                 } else {
                     multiSelection = false

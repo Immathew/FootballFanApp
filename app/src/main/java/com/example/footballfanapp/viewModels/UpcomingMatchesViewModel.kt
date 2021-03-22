@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.example.footballfanapp.models.UpcomingMatchesModel
-import com.example.footballfanapp.util.Constants
 import com.example.footballfanapp.util.Constants.Companion.QUERY_DATE_FROM
 import com.example.footballfanapp.util.Constants.Companion.QUERY_DATE_TO
 import com.example.footballfanapp.util.NetworkResult
@@ -17,6 +16,7 @@ class UpcomingMatchesViewModel(application: Application) : AndroidViewModel(appl
 
     private var dateFrom = ""
     private var dateTo = ""
+    var selectedChip = 0
 
     fun removeUnwantedLeagues(upcomingMatches: NetworkResult<UpcomingMatchesModel>): UpcomingMatchesModel {
 
