@@ -59,10 +59,15 @@ class UpcomingMatches : Fragment() {
 
 
         binding.upcomingMatchesHorizontalSV.post {
-            binding.upcomingMatchesHorizontalSV.scrollTo(
-                220,
-                0
-            )
+
+            binding.upcomingMatchesHorizontalSV.let {
+                if (binding.todayChip.isChecked){
+                    it.scrollTo(binding.todayChip.scrollX,0)
+                }
+                if (binding.dayAfterTomorrowChip.isChecked || binding.dayAfterTomorrowTwoChip.isChecked){
+                    it.scrollTo(it.right, 0)
+                }
+            }
         }
 
         return binding.root

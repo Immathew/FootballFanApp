@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="colorPrimary">#2b59d4</color>
     <color name="colorPrimaryDark">#2138de</color>
     <color name="colorAccent">#2e6dd1</color>
@@ -16,30 +17,28 @@
     <color name="yellow">#FFC114</color>
     <color name="green">#00C980</color>
 
-    <!-- LIGHT THEME -->
+    <!-- DARK THEME -->
 
-    <color name="backgroundColor">@color/lightGray</color>
-    <color name="textColor">@color/darker</color>
+    <color name="backgroundColor">@color/dark</color>
+    <color name="textColor">@color/lightGray</color>
 
     //Custom Chip style
-    <color name="checkedChipBackgroundColor">#202138de</color>
-    <color name="checkedChipTextColor">@color/black</color>
-
-    <color name="chipBackgroundColor">@color/white</color>
-    <color name="chipTextColor">@color/darkGray</color>
+    <color name="checkedChipBackgroundColor">@color/black</color>
+    <color name="checkedChipTextColor">@color/white</color>
+    <color name="chipBackgroundColor">@color/dark</color>
+    <color name="chipTextColor">@color/white</color>
 
     //custom CardView style
-    <color name="cardBackgroundColor">@color/white</color>
+    <color name="cardBackgroundColor">@color/darker</color>
     <color name="cardBackgroundColorLight">#156200EA</color>
-    <color name="strokeColor">@color/mediumGray</color>
+    <color name="strokeColor">@color/lightMediumGray</color>
 
     //custom status Bar style
-    <color name="statusBarColor">@color/colorPrimaryDark</color>
+    <color name="statusBarColor">@color/black</color>
     <color name="actionBarBackgroundColor">@color/colorPrimary</color>
 
     // Custom BottomNavigationView style
-    <color name="bottomNavBackground">@color/white</color>
-    <color name="bottomNavItemColor">@color/darkGray</color>
-    <color name="bottomNavCheckedItemColor">@color/colorPrimary</color>
-
+    <color name="bottomNavBackground">@color/black</color>
+    <color name="bottomNavItemColor">@color/mediumGray</color>
+    <color name="bottomNavCheckedItemColor">@color/colorAccent</color>
 </resources>

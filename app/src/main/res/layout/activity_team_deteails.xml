@@ -13,6 +13,7 @@
         android:id="@+id/teamDetailsActivityLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/backgroundColor"
         tools:context=".ui.TeamDetailsActivity">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -34,7 +35,8 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@color/backgroundColor">
 
                     <TextView
                         android:id="@+id/teamDetailsName_tv"

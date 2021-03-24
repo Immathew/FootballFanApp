@@ -10,7 +10,8 @@
         <item name="colorSecondaryVariant">@color/colorPrimaryDark</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/statusBarColor</item>
+        <item name="bottomNavigationStyle">@style/CustomBottomNavigationViewStyle</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

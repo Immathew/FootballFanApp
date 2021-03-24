@@ -35,7 +35,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/white">
+                android:background="@color/cardBackgroundColor"
+                >
 
                 <ImageView
                     android:id="@+id/leagueFlag_imageView"
@@ -56,7 +57,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="12dp"
                     android:text="@{competition.area.name}"
-                    android:textColor="@color/dark"
+                    android:textColor="@color/textColor"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/leagueFlag_imageView"
@@ -68,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@{competition.name}"
-                    android:textColor="@color/darker"
+                    android:textColor="@color/textColor"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@+id/leagueCountry_textView"
@@ -82,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@string/starts"
-                    android:textColor="@color/dark"
+                    android:textColor="@color/textColor"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="@+id/leagueName_textView"
                     app:layout_constraintTop_toBottomOf="@+id/leagueName_textView" />
@@ -93,7 +94,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="@{competition.currentSeason.startDate}"
-                    android:textColor="@color/dark"
+                    android:textColor="@color/textColor"
                     android:textSize="12sp"
                     android:textStyle="italic"
                     app:layout_constraintBottom_toBottomOf="@+id/leaguesStarts_textView"
@@ -106,7 +107,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="@string/ends"
-                    android:textColor="@color/dark"
+                    android:textColor="@color/textColor"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="@+id/dateLeaguesStarts_textView"
                     app:layout_constraintStart_toEndOf="@+id/dateLeaguesStarts_textView"
@@ -118,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="@{competition.currentSeason.endDate}"
-                    android:textColor="@color/dark"
+                    android:textColor="@color/textColor"
                     android:textSize="12sp"
                     android:textStyle="italic"
                     app:layout_constraintBottom_toBottomOf="@+id/leagueEnds_textView"

@@ -7,7 +7,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/lightGray"
+        android:background="@color/backgroundColor"
         tools:context=".ui.fragments.teamSquad.TeamSquadFragment">
 
         <TextView
@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:background="@color/lightGray"
+            android:background="@color/backgroundColor"
             app:layout_constraintStart_toStartOf="@id/teamSquad_recyclerView"
             app:layout_constraintEnd_toEndOf="@id/teamSquad_recyclerView"
             app:layout_constraintTop_toBottomOf="@id/coachName_tv"

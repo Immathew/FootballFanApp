@@ -95,7 +95,7 @@ class MyFavoriteTeamAdapter(
     private fun applySelection(holder: MyViewHolder, currentTeam: FavoriteTeamEntity) {
         if (selectedTeams.contains(currentTeam)) {
             selectedTeams.remove(currentTeam)
-            changeTeamStyle(holder, R.color.cardBackgroundColor, R.color.cardBackgroundColor)
+            changeTeamStyle(holder, R.color.backgroundColor, R.color.strokeColor)
             applyActionModeTitle()
         } else {
             selectedTeams.add(currentTeam)
@@ -149,7 +149,7 @@ class MyFavoriteTeamAdapter(
 
     override fun onDestroyActionMode(mode: ActionMode?) {
         myViewHolders.forEach { holder ->
-            changeTeamStyle(holder, R.color.cardBackgroundColor, R.color.cardBackgroundColor)
+            changeTeamStyle(holder, R.color.backgroundColor, R.color.strokeColor)
         }
         multiSelection = false
         selectedTeams.clear()

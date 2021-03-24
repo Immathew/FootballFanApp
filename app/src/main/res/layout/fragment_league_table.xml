@@ -7,7 +7,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="5dp"
-        android:background="@color/lightGray"
         tools:context=".ui.fragments.leagueTable.LeagueTableFragment">
 
 
@@ -15,7 +14,7 @@
             android:id="@+id/linearLayout_withChips"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/lightGray"
+            android:background="@color/backgroundColor"
             android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="@id/tableNames_constraintLayout"
@@ -88,7 +87,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center"
-                    android:background="@color/lightGray">
+                    android:background="@color/backgroundColor">
 
                     <TextView
                         android:id="@+id/position"
