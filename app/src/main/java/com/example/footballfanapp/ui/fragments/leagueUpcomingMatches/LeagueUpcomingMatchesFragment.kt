@@ -74,23 +74,31 @@ class LeagueUpcomingMatchesFragment : Fragment() {
                 when (response) {
                     is NetworkResult.Success -> {
                         val sort = response.data!!.matches.sortedByDescending {
-                           it.utcDate
+                            it.utcDate
                         }
 
                         mAdapter.setData(UpcomingMatchesModel(sort))
 
                         binding.leagueUpcomingMatchesRecyclerView.visibility = View.VISIBLE
-                        binding.leagueUpcomingMatchesSadFaceImageView.visibility = View.INVISIBLE
+                        binding.sadFaceImageView.visibility = View.INVISIBLE
+                        binding.errorTextView.visibility = View.INVISIBLE
+                        binding.progressBar.visibility = View.INVISIBLE
                     }
                     is NetworkResult.Error -> {
                         binding.leagueUpcomingMatchesRecyclerView.visibility = View.INVISIBLE
-                        binding.leagueUpcomingMatchesSadFaceImageView.visibility = View.VISIBLE
+                        binding.sadFaceImageView.visibility = View.VISIBLE
+                        binding.errorTextView.visibility = View.VISIBLE
+                        binding.errorTextView.text = response.message.toString()
+                        binding.progressBar.visibility = View.INVISIBLE
 
                         Toast.makeText(
                             requireContext(),
                             response.message.toString(),
                             Toast.LENGTH_SHORT
                         ).show()
+                    }
+                    is NetworkResult.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
                     }
                 }
             })
@@ -110,17 +118,26 @@ class LeagueUpcomingMatchesFragment : Fragment() {
                         }
 
                         binding.leagueUpcomingMatchesRecyclerView.visibility = View.VISIBLE
-                        binding.leagueUpcomingMatchesSadFaceImageView.visibility = View.INVISIBLE
+                        binding.sadFaceImageView.visibility = View.INVISIBLE
+                        binding.errorTextView.visibility = View.INVISIBLE
+                        binding.progressBar.visibility = View.INVISIBLE
+
                     }
                     is NetworkResult.Error -> {
                         binding.leagueUpcomingMatchesRecyclerView.visibility = View.INVISIBLE
-                        binding.leagueUpcomingMatchesSadFaceImageView.visibility = View.VISIBLE
+                        binding.sadFaceImageView.visibility = View.VISIBLE
+                        binding.errorTextView.visibility = View.VISIBLE
+                        binding.errorTextView.text = response.message.toString()
+                        binding.progressBar.visibility = View.INVISIBLE
 
                         Toast.makeText(
                             requireContext(),
                             response.message.toString(),
                             Toast.LENGTH_SHORT
                         ).show()
+                    }
+                    is NetworkResult.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
                     }
                 }
             })

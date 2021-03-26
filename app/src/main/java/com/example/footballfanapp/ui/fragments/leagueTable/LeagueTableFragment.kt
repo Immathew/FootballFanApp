@@ -74,13 +74,24 @@ class LeagueTableFragment : Fragment() {
                     leaguesStanding.let {
                         mAdapter.setData(it[0])
                     }
+
+                    binding.sadFaceImageView.visibility = View.INVISIBLE
+                    binding.errorTextView.visibility = View.INVISIBLE
+                    binding.progressBar.visibility = View.INVISIBLE
                 }
                 is NetworkResult.Error -> {
+                    binding.sadFaceImageView.visibility = View.VISIBLE
+                    binding.errorTextView.visibility = View.VISIBLE
+                    binding.errorTextView.text = response.message.toString()
                     Toast.makeText(
                         requireContext(),
                         response.message.toString(),
                         Toast.LENGTH_SHORT
                     ).show()
+                    binding.progressBar.visibility = View.INVISIBLE
+                }
+                is NetworkResult.Loading ->{
+                    binding.progressBar.visibility = View.VISIBLE
                 }
             }
         })

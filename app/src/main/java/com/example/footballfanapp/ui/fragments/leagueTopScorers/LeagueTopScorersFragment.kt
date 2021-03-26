@@ -1,5 +1,6 @@
 package com.example.footballfanapp.ui.fragments.leagueTopScorers
 
+import android.os.Binder
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -60,13 +61,23 @@ class LeagueTopScorersFragment : Fragment() {
                         response.data!!.let {
                             mAdapter.setData(it)
                         }
+                        binding.sadFaceImageView.visibility = View.INVISIBLE
+                        binding.errorTextView.visibility = View.INVISIBLE
+                        binding.progressBar.visibility = View.INVISIBLE
                     }
                     is NetworkResult.Error -> {
+                        binding.sadFaceImageView.visibility = View.VISIBLE
+                        binding.errorTextView.visibility = View.VISIBLE
+                        binding.errorTextView.text = response.message.toString()
+                        binding.progressBar.visibility = View.INVISIBLE
                         Toast.makeText(
                             requireContext(),
                             response.message.toString(),
                             Toast.LENGTH_SHORT
                         ).show()
+                    }
+                    is NetworkResult.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
                     }
                 }
             })

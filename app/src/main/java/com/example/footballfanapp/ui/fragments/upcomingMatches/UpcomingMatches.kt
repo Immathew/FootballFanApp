@@ -126,29 +126,40 @@ class UpcomingMatches : Fragment() {
 
                     if (filteredMatches.matches.isEmpty()) {
                         binding.upcomingMatchesRecyclerView.visibility = View.INVISIBLE
-                        binding.upcomingMatchesSadFaceImageView.visibility = View.VISIBLE
-                        binding.upcomingMatchesErrorTextView.visibility = View.VISIBLE
-                        binding.upcomingMatchesErrorTextView.text =
+                        binding.sadFaceImageView.visibility = View.VISIBLE
+                        binding.errorTextView.visibility = View.VISIBLE
+                        binding.errorTextView.text =
                             getString(R.string.No_matches_today)
                     } else {
                         binding.upcomingMatchesRecyclerView.visibility = View.VISIBLE
-                        binding.upcomingMatchesSadFaceImageView.visibility = View.INVISIBLE
-                        binding.upcomingMatchesErrorTextView.visibility = View.INVISIBLE
+                        binding.sadFaceImageView.visibility = View.INVISIBLE
+                        binding.errorTextView.visibility = View.INVISIBLE
                     }
+                    binding.progressBar.visibility = View.INVISIBLE
                 }
                 is NetworkResult.Error -> {
                     if (response.message.toString() == "No matches today") {
                         binding.upcomingMatchesRecyclerView.visibility = View.INVISIBLE
-                        binding.upcomingMatchesSadFaceImageView.visibility = View.VISIBLE
-                        binding.upcomingMatchesErrorTextView.visibility = View.VISIBLE
-                        binding.upcomingMatchesErrorTextView.text =
+                        binding.sadFaceImageView.visibility = View.VISIBLE
+                        binding.errorTextView.visibility = View.VISIBLE
+                        binding.errorTextView.text =
                             getString(R.string.No_matches_today)
+                    } else {
+                        binding.upcomingMatchesRecyclerView.visibility = View.INVISIBLE
+                        binding.sadFaceImageView.visibility = View.VISIBLE
+                        binding.errorTextView.visibility = View.VISIBLE
+                        binding.errorTextView.text = response.message.toString()
                     }
+                    binding.progressBar.visibility = View.INVISIBLE
+
                     Toast.makeText(
                         requireContext(),
                         response.message.toString(),
                         Toast.LENGTH_SHORT
                     ).show()
+                }
+                is NetworkResult.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
                 }
             }
         })
