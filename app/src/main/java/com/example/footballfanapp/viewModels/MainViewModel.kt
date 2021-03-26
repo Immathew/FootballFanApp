@@ -34,12 +34,10 @@ class MainViewModel @Inject constructor(
             repository.local.insertTopLeagues(topLeaguesEntity)
         }
 
-
     /** RETROFIT */
     var topLeaguesResponse: MutableLiveData<NetworkResult<TopLeaguesModel>> = MutableLiveData()
     var upcomingMatchesResponse: MutableLiveData<NetworkResult<UpcomingMatchesModel>> =
         MutableLiveData()
-
 
     fun getTopLeagues(queries: Map<String, String>) = viewModelScope.launch {
         getTopLeaguesSafeCall(queries)

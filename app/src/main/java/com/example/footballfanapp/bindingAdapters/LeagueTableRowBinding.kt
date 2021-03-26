@@ -15,13 +15,14 @@ class LeagueTableRowBinding {
 
     companion object {
 
-        @BindingAdapter("onTableRowClickListener")
+        @BindingAdapter("onTableRowClickListener","onTableRowClickListenerTeamName" )
         @JvmStatic
-        fun onTableRowClickListener(leagueTableRowLayout: ConstraintLayout, teamId: Int) {
+        fun onTableRowClickListener(leagueTableRowLayout: ConstraintLayout, teamId: Int, teamName: String) {
             leagueTableRowLayout.setOnClickListener {
                 try {
                     val intent = Intent(leagueTableRowLayout.context, TeamDetailsActivity::class.java).apply {
                         putExtra("teamId", teamId)
+                        putExtra("teamName", teamName)
                     }
                     startActivity(leagueTableRowLayout.context, intent, null)
                 } catch (e:Exception){

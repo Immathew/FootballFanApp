@@ -20,6 +20,10 @@
 
     <color name="backgroundColor">@color/lightGray</color>
     <color name="textColor">@color/darker</color>
+    <color name="favouriteTeamTextColor">@color/darker</color>
+
+    <color name="teamDetailsTextColor">@color/darker</color>
+    <color name="teamDetailsHeaderBackgroundColor">@color/white</color>
 
     //Custom Chip style
     <color name="checkedChipBackgroundColor">#202138de</color>
@@ -31,7 +35,7 @@
     //custom CardView style
     <color name="cardBackgroundColor">@color/white</color>
     <color name="cardBackgroundColorLight">#156200EA</color>
-    <color name="strokeColor">@color/mediumGray</color>
+    <color name="strokeColor">@color/darkGray</color>
 
     //custom status Bar style
     <color name="statusBarColor">@color/colorPrimaryDark</color>

@@ -8,5 +8,6 @@ import com.example.footballfanapp.util.Constants.Companion.FAVORITE_TEAM_TABLE
 class FavoriteTeamEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    val teamId: Int = 0
+    val teamId: Int = 0,
+    val teamName: String
 )

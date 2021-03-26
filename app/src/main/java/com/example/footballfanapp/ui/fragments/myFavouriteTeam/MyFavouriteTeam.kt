@@ -36,7 +36,7 @@ class MyFavouriteTeam : Fragment() {
 
         binding.lifecycleOwner = this
         binding.myFavouriteTeamRecyclerView.adapter = mAdapter
-        binding.myFavouriteTeamRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.myFavouriteTeamRecyclerView.layoutManager = GridLayoutManager(requireContext(),2)
 
         readFavoriteTeamsFromDatabase()
 

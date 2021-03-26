@@ -21,11 +21,15 @@
 
     <color name="backgroundColor">@color/dark</color>
     <color name="textColor">@color/lightGray</color>
+    <color name="favouriteTeamTextColor">@color/darker</color>
+
+    <color name="teamDetailsTextColor">@color/darker</color>
+    <color name="teamDetailsHeaderBackgroundColor">@color/white</color>
 
     //Custom Chip style
     <color name="checkedChipBackgroundColor">@color/black</color>
     <color name="checkedChipTextColor">@color/white</color>
-    <color name="chipBackgroundColor">@color/dark</color>
+    <color name="chipBackgroundColor">@color/darkGray</color>
     <color name="chipTextColor">@color/white</color>
 
     //custom CardView style

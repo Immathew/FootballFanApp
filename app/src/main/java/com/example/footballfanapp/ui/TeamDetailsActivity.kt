@@ -34,6 +34,7 @@ class TeamDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTeamDeteailsBinding
 
     private var teamId = 0
+    private var teamName = ""
     private var teamSavedToFavorites = false
     private var savedTeamId = 0
     private lateinit var menuItem: MenuItem
@@ -44,6 +45,7 @@ class TeamDetailsActivity : AppCompatActivity() {
         val intent = intent
 
         teamId = intent.getIntExtra("teamId", args.teamId)
+        teamName = intent.getStringExtra("teamName").toString()
 
         Log.e("TEAM_ID", teamId.toString())
 
@@ -88,7 +90,6 @@ class TeamDetailsActivity : AppCompatActivity() {
 
         binding.teamDetailsViewPager2.reduceDragSensitivity()
     }
-
 
     private fun requestApiData(teamId: Int ) {
 
@@ -135,7 +136,8 @@ class TeamDetailsActivity : AppCompatActivity() {
         val favoriteTeamEntity =
             FavoriteTeamEntity(
                 0,
-                teamId
+                teamId,
+                teamName
             )
         teamDetailsViewModel.insertFavoriteTeam(favoriteTeamEntity)
         changeMenuItemColor(item, R.color.yellow)
@@ -147,7 +149,8 @@ class TeamDetailsActivity : AppCompatActivity() {
         val favoriteTeamEntity =
             FavoriteTeamEntity(
                 savedTeamId,
-                teamId
+                teamId,
+                teamName
             )
         teamDetailsViewModel.deleteFavoriteTeam(favoriteTeamEntity)
         changeMenuItemColor(item, R.color.white)
