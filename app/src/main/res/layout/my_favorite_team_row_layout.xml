@@ -55,14 +55,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
+                    android:gravity="center"
                     android:text="@{favoriteTeamEntity.teamName}"
                     android:textColor="@color/favouriteTeamTextColor"
-                    android:gravity="center"
-                    android:textStyle="bold"
                     android:textSize="14sp"
-                    app:layout_constraintTop_toBottomOf="@id/favoriteTeam_clubImage"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/favoriteTeam_clubImage"
                     app:layout_constraintStart_toStartOf="@id/favoriteTeam_clubImage"
-                    app:layout_constraintEnd_toEndOf="@id/favoriteTeam_clubImage"/>
+                    app:layout_constraintTop_toBottomOf="@id/favoriteTeam_clubImage" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
