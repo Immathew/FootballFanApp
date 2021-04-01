@@ -164,12 +164,13 @@ class MyFavoriteTeamAdapter(
     }
 
     private fun showSnackBar(message: String) {
-        Snackbar.make(
-            rootView,
-            message,
-            Snackbar.LENGTH_SHORT
-        ).setAction("Ok") {}
-            .show()
+            Snackbar.make(
+                rootView,
+                message,
+                Snackbar.LENGTH_SHORT
+            ).setAction("Ok") {}
+                .show()
+
     }
 
     fun clearContextualActionMode() {
