@@ -21,7 +21,10 @@ Project is written in **Kotlin** with usage of:
 
 * Pick your league and check current standings, upcoming matches or top scorers
 
-<img src="https://github.com/Immathew/FootballFanApp/blob/master/screenshots/Screenshot_20210331-182858.png" width="250" height="500"> <img src="https://github.com/Immathew/FootballFanApp/blob/master/screenshots/Screenshot_20210331-182934.png" width="250" height="500"> <img src="https://github.com/Immathew/FootballFanApp/blob/master/screenshots/167726734_968790793656382_8641521796429751824_n.png" width="250" height="500"><img src="https://github.com/Immathew/FootballFanApp/blob/master/screenshots/167716571_304811790983748_8904618455887919510_n.png" width="250" height="500">
+<img src="https://github.com/Immathew/FootballFanApp/blob/master/screenshots/Screenshot_20210331-182858.png" width="250" height="500"> <img src="https://github.com/Immathew/FootballFanApp/blob/master/screenshots/Screenshot_20210331-182934.png" width="250" height="500"> 
+
+
+<img src="https://github.com/Immathew/FootballFanApp/blob/master/screenshots/167726734_968790793656382_8641521796429751824_n.png" width="250" height="500"><img src="https://github.com/Immathew/FootballFanApp/blob/master/screenshots/167716571_304811790983748_8904618455887919510_n.png" width="250" height="500">
 
 * You can use bottom navigation and see upcoming matches for all supported leagues (App checks your local time and sets Your timezone)
 
