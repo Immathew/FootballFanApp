@@ -41,3 +41,7 @@ Project is written in **Kotlin** with usage of:
 * If you want to remove any team from favorites just long-click to start contextual menu
 
 <img src="https://github.com/Immathew/FootballFanApp/blob/master/screenshots/delete%20teams.gif" width="300" height="550">
+
+* Application supports dark theme
+
+<img src="https://github.com/Immathew/FootballFanApp/blob/master/screenshots/dark%20theme.png" width="300" height="550">
