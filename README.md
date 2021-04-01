@@ -1,5 +1,5 @@
 # :soccer:FootballFanApp 
-Simple application to check latest scores and upcoming matches in 9 Top Soccer Leagues.
+Simple application to check latest scores and upcoming matches in 7 Top Soccer Leagues.
 
 Build with API data from https://www.football-data.org/
 
