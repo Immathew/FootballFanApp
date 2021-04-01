@@ -10,6 +10,7 @@ Project is written in **Kotlin** with usage of:
 
 * MVVM architecture
 * Kotlin Navigation
+* Live Data
 * Dagger - Hilt
 * ROOM 
 * Coroutines
