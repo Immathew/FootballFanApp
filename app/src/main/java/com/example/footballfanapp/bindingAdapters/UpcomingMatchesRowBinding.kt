@@ -33,16 +33,17 @@ class UpcomingMatchesRowBinding {
             }
         }
 
-        @BindingAdapter("onTeamNameClickListener")
+        @BindingAdapter("onTeamNameClickListener", "sendTeamName")
         @JvmStatic
-        fun onTeamNameClickListener(teamName: TextView, teamId: Int) {
-            teamName.setOnClickListener {
+        fun onTeamNameClickListener(team: TextView, teamId: Int, teamName: String) {
+            team.setOnClickListener {
                 try {
-                    val intent = Intent(teamName.context, TeamDetailsActivity::class.java).apply {
+                    val intent = Intent(team.context, TeamDetailsActivity::class.java).apply {
                         putExtra("teamId", teamId)
+                        putExtra("teamName", teamName)
                     }
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    startActivity(teamName.context, intent, null)
+                    startActivity(team.context, intent, null)
                 } catch (e: Exception){
                     Log.e("teamNameOnClickL.", e.toString())
                 }

@@ -14,8 +14,9 @@ import com.example.footballfanapp.databinding.FragmentMyFavouriteTeamBinding
 import com.example.footballfanapp.models.Team
 import com.example.footballfanapp.viewModels.MainViewModel
 import com.example.footballfanapp.viewModels.TeamDetailsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MyFavouriteTeam : Fragment() {
 
     private lateinit var teamDetailsViewModel: TeamDetailsViewModel

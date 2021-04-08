@@ -119,6 +119,7 @@
                 <TextView
                     android:id="@+id/homeTeam_name_textView"
                     onTeamNameClickListener="@{match.homeTeam.id}"
+                    sendTeamName="@{match.homeTeam.name}"
                     android:layout_width="120dp"
                     android:layout_height="30dp"
                     android:layout_margin="4dp"
@@ -137,6 +138,7 @@
                 <TextView
                     android:id="@+id/awayTeam_name_textView"
                     onTeamNameClickListener="@{match.awayTeam.id}"
+                    sendTeamName="@{match.awayTeam.name}"
                     android:layout_width="120dp"
                     android:layout_height="30dp"
                     android:layout_margin="4dp"
