@@ -27,7 +27,7 @@ class MainViewModel @Inject constructor(
     /** ROOM DATABASE*/
 
     var readTopLeagues: LiveData<List<TopLeaguesEntity>> =
-        repository.local.readTopLeagues().asLiveData()
+        repository.local.readTopLeagues()
 
     private fun insertTopLeagues(topLeaguesEntity: TopLeaguesEntity) =
         viewModelScope.launch(Dispatchers.IO) {

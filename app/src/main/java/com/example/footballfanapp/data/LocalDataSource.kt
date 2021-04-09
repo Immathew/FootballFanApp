@@ -1,5 +1,6 @@
 package com.example.footballfanapp.data
 
+import androidx.lifecycle.LiveData
 import com.example.footballfanapp.data.database.TopLeaguesDao
 import com.example.footballfanapp.data.database.entities.FavoriteTeamEntity
 import com.example.footballfanapp.data.database.entities.TopLeaguesEntity
@@ -14,7 +15,7 @@ class LocalDataSource @Inject constructor(
         topLeaguesDao.insertTopLeagues(topLeaguesEntity)
     }
 
-    fun readTopLeagues(): Flow<List<TopLeaguesEntity>> {
+    fun readTopLeagues(): LiveData<List<TopLeaguesEntity>> {
         return topLeaguesDao.readTopLeagues()
     }
 
