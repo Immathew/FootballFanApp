@@ -10,6 +10,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.footballfanapp.R
 import com.example.footballfanapp.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {

@@ -4,29 +4,31 @@ import android.content.Context
 import androidx.room.Room
 import com.example.footballfanapp.data.database.TopLeaguesDao
 import com.example.footballfanapp.data.database.TopLeaguesDatabase
-import com.example.footballfanapp.util.Constants.Companion.DATABASE_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object DatabaseModule {
+object TestAppModule {
 
     @Singleton
     @Provides
-    fun providesDatabase(
+    @Named("testDb")
+    fun providesInMemoryDatabase(
         @ApplicationContext context: Context
-    ) = Room.databaseBuilder(
+    ) = Room.inMemoryDatabaseBuilder(
         context,
-        TopLeaguesDatabase::class.java,
-        DATABASE_NAME
-    ).build()
+        TopLeaguesDatabase::class.java
+    ).allowMainThreadQueries()
+        .build()
 
     @Singleton
     @Provides
-    fun provideDao(database: TopLeaguesDatabase): TopLeaguesDao = database.topLeaguesDao()
+    @Named("testDao")
+    fun providesTestDao (database: TopLeaguesDatabase): TopLeaguesDao = database.topLeaguesDao()
 }

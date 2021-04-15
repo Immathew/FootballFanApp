@@ -6,13 +6,15 @@ import androidx.room.TypeConverters
 import com.example.footballfanapp.data.database.entities.FavoriteTeamEntity
 import com.example.footballfanapp.data.database.entities.TopLeaguesEntity
 
+
 @Database(
     entities = [TopLeaguesEntity::class, FavoriteTeamEntity::class],
     version = 1,
     exportSchema = false
 )
 @TypeConverters(TopLeaguesTypeConverter::class)
-abstract class TopLeaguesDatabase: RoomDatabase() {
+abstract class TopLeaguesDatabase : RoomDatabase() {
 
     abstract fun topLeaguesDao(): TopLeaguesDao
+
 }

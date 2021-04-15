@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.footballfanapp.data.database.entities.FavoriteTeamEntity
 import com.example.footballfanapp.data.database.entities.TopLeaguesEntity
+import dagger.Provides
 import kotlinx.coroutines.flow.Flow
 
 @Dao
