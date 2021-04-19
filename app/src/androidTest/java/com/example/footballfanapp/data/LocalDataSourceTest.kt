@@ -53,6 +53,9 @@ class LocalDataSourceTest : TestCase() {
     @After
     fun closeDb() = database.close()
 
+
+    /**
+     * Check if TopLeaguesEntity is the same in DB*/
     @Test
     fun insertTopLeagues_readTopLeagues() = runBlockingTest {
 
@@ -75,6 +78,6 @@ class LocalDataSourceTest : TestCase() {
         assertThat(readDB[0].topLeaguesModel).isEqualTo(topLeaguesEntity.topLeaguesModel)
         assertThat(readDB[0].topLeaguesModel.competitions)
             .isEqualTo(topLeaguesEntity.topLeaguesModel.competitions)
-
     }
+
 }

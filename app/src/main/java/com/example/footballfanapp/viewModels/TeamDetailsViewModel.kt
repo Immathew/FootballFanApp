@@ -27,7 +27,7 @@ class TeamDetailsViewModel @Inject constructor(
     /**Room Database*/
 
     val readFavoriteTeamEntity: LiveData<List<FavoriteTeamEntity>> =
-        repository.local.readFavoriteTeam().asLiveData()
+        repository.local.readFavoriteTeam()
 
     fun insertFavoriteTeam(favoriteTeamEntity: FavoriteTeamEntity) = viewModelScope.launch(Dispatchers.IO) {
         repository.local.insertFavoriteTeam(favoriteTeamEntity)

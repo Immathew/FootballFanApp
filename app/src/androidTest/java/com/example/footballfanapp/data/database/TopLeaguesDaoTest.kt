@@ -1,8 +1,8 @@
 package com.example.footballfanapp.data.database
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.example.footballfanapp.data.database.entities.FavoriteTeamEntity
 import com.example.footballfanapp.data.database.entities.TopLeaguesEntity
-import com.example.footballfanapp.di.DatabaseModule
 import com.example.footballfanapp.getOrAwaitValue
 import com.example.footballfanapp.models.Area
 import com.example.footballfanapp.models.Competition
@@ -11,7 +11,6 @@ import com.example.footballfanapp.models.TopLeaguesModel
 import com.google.common.truth.Truth.assertThat
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import dagger.hilt.android.testing.UninstallModules
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
@@ -49,6 +48,10 @@ class TopLeaguesDaoTest {
     @After
     fun closeDb() = database.close()
 
+
+    /**
+     * Check if TopLeaguesEntity is the same in DB*/
+
     @Test
     fun insertTopLeagues_readTopLeagues() = runBlockingTest {
 
@@ -63,18 +66,52 @@ class TopLeaguesDaoTest {
         val topLeaguesEntity = TopLeaguesEntity(topLeaguesModel)
 
         // when
-        database.topLeaguesDao().insertTopLeagues(topLeaguesEntity)
+        dao.insertTopLeagues(topLeaguesEntity)
 
         // then
-        val readDB = database.topLeaguesDao().readTopLeagues().getOrAwaitValue()
+        val readDB = dao.readTopLeagues().getOrAwaitValue()
 
 //        assertThat(readDB).contains(topLeaguesEntity.id)
         assertThat(readDB[0].id).isEqualTo(topLeaguesEntity.id)
         assertThat(readDB[0].topLeaguesModel).isEqualTo(topLeaguesEntity.topLeaguesModel)
         assertThat(readDB[0].topLeaguesModel.competitions).isEqualTo(topLeaguesEntity.topLeaguesModel.competitions)
-
     }
 
+    /**
+     * Check if FavoriteTeam is the same in DB*/
+
+    @Test
+    fun insertFavoriteTeam_readFavoriteTeam() = runBlockingTest {
+        // given favorite team
+        val testFavoriteTeam = FavoriteTeamEntity(0, 55, "Manchester United")
+
+        // when
+        dao.insertFavoriteTeam(testFavoriteTeam)
+
+        // then
+        val readDB = dao.readFavoriteTeam().getOrAwaitValue()
+
+        assertThat(readDB[0].teamName).isEqualTo(testFavoriteTeam.teamName)
+    }
+
+    /**
+     * Check if deleting entities in DB works*/
+    @Test
+    fun insertFavoriteTeam_deleteFavoriteTeam() = runBlockingTest {
+        // given favorite team
+        val testFavoriteTeam = FavoriteTeamEntity(0, 55, "Manchester United")
+
+        // when
+        dao.insertFavoriteTeam(testFavoriteTeam)
+
+        // then
+
+        dao.deleteFavoriteTeam(testFavoriteTeam)
+
+        val readDbAfterDeleting = dao.readFavoriteTeam().getOrAwaitValue()
+
+        assertThat(readDbAfterDeleting).doesNotContain(testFavoriteTeam)
+    }
 }
 
 

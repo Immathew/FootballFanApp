@@ -20,7 +20,7 @@ interface TopLeaguesDao {
     suspend fun insertFavoriteTeam(favoriteTeamEntity: FavoriteTeamEntity)
 
     @Query("SELECT * FROM favorite_team_table")
-    fun readFavoriteTeam(): Flow<List<FavoriteTeamEntity>>
+    fun readFavoriteTeam(): LiveData<List<FavoriteTeamEntity>>
 
     @Delete
     suspend fun deleteFavoriteTeam(favoriteTeamEntity: FavoriteTeamEntity)

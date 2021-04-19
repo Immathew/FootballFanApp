@@ -23,7 +23,7 @@ class LocalDataSource @Inject constructor(
         topLeaguesDao.insertFavoriteTeam(favoriteTeamEntity)
     }
 
-    fun readFavoriteTeam(): Flow<List<FavoriteTeamEntity>> {
+    fun readFavoriteTeam(): LiveData<List<FavoriteTeamEntity>> {
         return topLeaguesDao.readFavoriteTeam()
     }
 
